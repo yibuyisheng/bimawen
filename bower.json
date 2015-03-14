@@ -1,0 +1,19 @@
+{
+  "name": "bimawen",
+  "version": "0.0.0",
+  "authors": [
+    "yibuyisheng <yibuyisheng@163.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.0",
+    "react-router": "~0.12.4"
+  }
+}

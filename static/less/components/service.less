@@ -1,0 +1,27 @@
+.service {
+    display: -webkit-box;
+    height: 140px;
+    margin-top: 10px;
+    text-align: center;
+
+    p {
+        -webkit-box-flex: 1;
+
+        &:first-child {
+            border-right: 1px solid #eaeaea;
+        }
+    }
+
+    span {
+        font-size: 12px;
+        color: gray;
+    }
+
+    strong {
+        font-size: 16px;
+    }
+
+    p:last-child strong:nth-child(4) {
+        font-size: 12px;
+    }
+}
