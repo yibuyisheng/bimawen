@@ -7,10 +7,21 @@
     global.pages.Main = React.createClass({
         mixins: [ReactRouter.Navigation],
         render: function() {
-            var leftButton = {text: '上海'};
-            var rightButton = {text: '登录'};
-
             var _this = this;
+
+            var leftButton = {
+                text: '上海',
+                onTap: function() {
+
+                }
+            };
+            var rightButton = {
+                text: '登录',
+                onTap: function() {
+                    _this.transitionTo('/login');
+                }
+            };
+
             var bottomLeftButton = {
                 onTap: function() {
                     _this.replaceWith('/main/home');

@@ -11,6 +11,7 @@
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
+    "gulp-jsx": "git://github.com/yibuyisheng/gulp-jsx",
     "gulp-less": "^3.0.1",
     "q": "^1.2.0"
   }

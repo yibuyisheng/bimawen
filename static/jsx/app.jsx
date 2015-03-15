@@ -23,7 +23,10 @@
                 <Route path="home" handler={pages.Home}></Route>
                 <Route path="store-maintain" handler={pages.StoreMaintain}></Route>
                 <Route path="me" handler={pages.Me}></Route>
+                <DefaultRoute handler={pages.Home} />
             </Route>
+            <Route path="login" handler={pages.Login} />
+            <DefaultRoute handler={pages.Main} />
         </Route>
     );
 
