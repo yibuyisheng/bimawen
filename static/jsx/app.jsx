@@ -5,7 +5,7 @@
     var DefaultRoute = ReactRouter.DefaultRoute;
     var RouteHandler = ReactRouter.RouteHandler;
 
-    React.initializeTouchEvents(true)
+    React.initializeTouchEvents(true);
 
     var App = React.createClass({
         render: function() {
@@ -22,6 +22,7 @@
             <Route handler={pages.Main} path="main">
                 <Route path="home" handler={pages.Home}></Route>
                 <Route path="store-maintain" handler={pages.StoreMaintain}></Route>
+                <Route path="me" handler={pages.Me}></Route>
             </Route>
         </Route>
     );
