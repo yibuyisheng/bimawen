@@ -40,7 +40,16 @@ gulp.task('html', function() {
 });
 
 gulp.task('watch', ['less', 'js-pack'], function() {
-    gulp.watch(['./static/less/**/*.less'], ['less']);
-    gulp.watch(['./static/jsx/**/*.jsx'], ['js-pack']);
-    gulp.watch(['./static/mobile/main.html'], ['html']);
+    return gulp.watch([
+            './static/less/**/*.less',
+            './static/jsx/**/*.jsx',
+            './static/mobile/main.html'
+        ], [
+            'less',
+            'js-pack',
+            'html'
+        ]);
+    // gulp.watch(['./static/less/**/*.less'], ['less']);
+    // gulp.watch(['./static/jsx/**/*.jsx'], ['js-pack']);
+    // gulp.watch(['./static/mobile/main.html'], ['html']);
 });

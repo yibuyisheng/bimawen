@@ -1,10 +1,6 @@
 var ReactRouter = require('react-router');
 var React = require('react');
-var Main = require('./pages/Main.jsx');
-var Home = require('./pages/Home.jsx');
-var Login = require('./pages/Login.jsx');
-var Me = require('./pages/Me.jsx');
-var StoreMaintain = require('./pages/StoreMaintain.jsx');
+var Appointment1 = require('./pages/Appointment1.jsx');
 
 var Route = ReactRouter.Route;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
@@ -25,14 +21,8 @@ var App = React.createClass({
 
 var routes = (
     <Route handler={App} path="/">
-        <Route handler={Main} path="main">
-            <Route path="home" handler={Home}></Route>
-            <Route path="store-maintain" handler={StoreMaintain}></Route>
-            <Route path="me" handler={Me}></Route>
-            <DefaultRoute handler={Home} />
-        </Route>
-        <Route path="login" handler={Login} />
-        <DefaultRoute handler={Main} />
+        <Route handler={Appointment1} path="appointment-1" />
+        <DefaultRoute handler={Appointment1} />
     </Route>
 );
 
