@@ -1,21 +1,18 @@
-(function(global) {
+var React = require('react');
+var Button = require('./Button.jsx');
 
-    global.components = global.components || {};
+var Header = React.createClass({
+    render: function() {
+        var leftButton = this.props.leftButton || {};
+        var rightButton = this.props.rightButton || {};
+        return (
+            <header className="header-component">
+                <Button onTap={leftButton.onTap}>{leftButton.text}</Button>
+                <h1>{this.props.children}</h1>
+                <Button onTap={rightButton.onTap}>{rightButton.text}</Button>
+            </header>
+        );
+    }
+});
 
-    var com = global.components;
-
-    global.components.Header = React.createClass({
-        render: function() {
-            var leftButton = this.props.leftButton || {};
-            var rightButton = this.props.rightButton || {};
-            return (
-                <header className="header-component">
-                    <com.Button onTap={leftButton.onTap}>{leftButton.text}</com.Button>
-                    <h1>{this.props.children}</h1>
-                    <com.Button onTap={rightButton.onTap}>{rightButton.text}</com.Button>
-                </header>
-            );
-        }
-    });
-
-})(window);
+module.exports = Header;

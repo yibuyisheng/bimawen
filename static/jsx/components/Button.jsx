@@ -1,15 +1,13 @@
-(function(global) {
+var React = require('react');
 
-    global.components = global.components || {};
+var Button = React.createClass({
+    render: function() {
+        return (
+            <button className="button" onTouchEnd={this.props.onTap}>
+                {this.props.children}
+            </button>
+        );
+    }
+});
 
-    global.components.Button = React.createClass({
-        render: function() {
-            return (
-                <button className="button" onTouchEnd={this.props.onTap}>
-                    {this.props.children}
-                </button>
-            );
-        }
-    });
-
-})(window);
+module.exports = Button;

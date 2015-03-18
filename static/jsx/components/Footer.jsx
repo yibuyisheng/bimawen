@@ -1,28 +1,25 @@
-(function(global) {
+var React = require('react');
+var Button = require('./Button.jsx');
 
-    global.components = global.components || {};
+var Footer = React.createClass({
+    render: function() {
+        var leftButton = this.props.leftButton || {};
+        var centerButton = this.props.centerButton || {};
+        var rightButton = this.props.rightButton || {};
+        return (
+            <footer className="footer-component">
+                <Button onTap={leftButton.onTap}>
+                    首页
+                </Button>
+                <Button onTap={centerButton.onTap}>
+                    门店保养
+                </Button>
+                <Button onTap={rightButton.onTap}>
+                    我
+                </Button>
+            </footer>
+        );
+    }
+});
 
-    var com = global.components;
-
-    global.components.Footer = React.createClass({
-        render: function() {
-            var leftButton = this.props.leftButton || {};
-            var centerButton = this.props.centerButton || {};
-            var rightButton = this.props.rightButton || {};
-            return (
-                <footer className="footer-component">
-                    <com.Button onTap={leftButton.onTap}>
-                        首页
-                    </com.Button>
-                    <com.Button onTap={centerButton.onTap}>
-                        门店保养
-                    </com.Button>
-                    <com.Button onTap={rightButton.onTap}>
-                        我
-                    </com.Button>
-                </footer>
-            );
-        }
-    });
-
-})(window);
+module.exports = Footer;
