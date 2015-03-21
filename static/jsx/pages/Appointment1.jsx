@@ -2,6 +2,7 @@ var React = require('react');
 var Header = require('../components/Header.jsx');
 var Footer = require('../components/Footer.jsx');
 var Title = require('../components/Title.jsx');
+var Button = require('../components/Button.jsx');
 
 var Appointment1 = React.createClass({
     render: function() {
@@ -23,6 +24,7 @@ var Appointment1 = React.createClass({
                     </ul>
                 </div>
                 <p>根据您的爱车车型，我们还可定制适合您爱车的机油。</p>
+                <Button className="big-button">开始预约</Button>
                 <Footer></Footer>
             </div>
         );

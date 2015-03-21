@@ -7,6 +7,23 @@ html, body {
 p {
     margin: 0;
 }
-button:focus {
+button:focus, input:focus, select:focus, textarea:focus {
     outline: none;
+}
+input, select {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    margin: 0;
+}
+textarea {
+    border: 1px solid #ddd;
+    padding: 4px;
+    resize: none;
+}
+a {
+    color: #67a5b2;
 }

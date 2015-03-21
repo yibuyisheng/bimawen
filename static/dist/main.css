@@ -8,8 +8,29 @@ body {
 p {
   margin: 0;
 }
-button:focus {
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
+}
+input,
+select {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  margin: 0;
+}
+textarea {
+  border: 1px solid #ddd;
+  padding: 4px;
+  resize: none;
+}
+a {
+  color: #67a5b2;
 }
 .header-component {
   display: -webkit-box;
@@ -89,6 +110,22 @@ button:focus {
   border-bottom: 1px solid #00cacc;
   text-align: center;
 }
+.button {
+  border: none;
+  border-radius: 3px;
+}
+.normal-button {
+  background: #31b7ec;
+  color: white;
+  padding: 5px 10px;
+}
+.big-button {
+  background: #31b7ec;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  margin: 0 10px 25px 10px;
+}
 .appointment-1 {
   flex: 1;
   display: flex;
@@ -137,6 +174,232 @@ button:focus {
   font-size: 10px;
   line-height: 24px;
   margin: 12px;
+}
+.appointment-2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.appointment-2 .content {
+  flex: 1;
+}
+.appointment-2 .content p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 30px;
+  font-size: 14px;
+}
+.appointment-2 .content p label {
+  width: 70px;
+}
+.appointment-2 .content p > *:last-child {
+  flex: 1;
+}
+.appointment-2 .content div {
+  margin: 20px 30px;
+}
+.appointment-2 .content div h4 {
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 4px;
+}
+.appointment-2 .content div textarea {
+  height: 100px;
+  width: 100%;
+}
+.appointment-2 > p:nth-child(3) {
+  color: #339abd;
+  font-size: 10px;
+  line-height: 24px;
+  margin: 12px;
+}
+.appointment-3 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.appointment-3 .content {
+  flex: 1;
+}
+.appointment-3 .content > p {
+  margin: 0 30px;
+  font-size: 14px;
+}
+.appointment-3 .content > p:nth-child(2),
+.appointment-3 .content > p:nth-child(3) {
+  line-height: 26px;
+}
+.appointment-3 .content > p:nth-child(3) {
+  font-weight: bold;
+}
+.appointment-3 .content > p:nth-child(2),
+.appointment-3 .content > p:nth-child(4) {
+  display: flex;
+  justify-content: space-between;
+}
+.appointment-3 .content > p:nth-child(4) {
+  margin-top: 10px;
+}
+.appointment-3 > p:nth-child(3) {
+  color: #339abd;
+  font-size: 10px;
+  line-height: 24px;
+  margin: 12px;
+}
+.appointment-3 .addresses {
+  margin: 10px 30px;
+}
+.appointment-3 .addresses p {
+  display: flex;
+  align-items: center;
+}
+.appointment-3 .addresses p input {
+  width: 20px;
+}
+.appointment-3 .addresses p span {
+  flex: 1;
+  font-size: 12px;
+  line-height: 20px;
+  color: gray;
+}
+.appointment-time {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.appointment-time .content {
+  flex: 1;
+}
+.appointment-time .content > p {
+  margin: 0 25px;
+  font-size: 14px;
+  line-height: 40px;
+}
+.appointment-time .content > p input,
+.appointment-time .content > p select {
+  font-weight: bold;
+  height: 25px;
+}
+.appointment-time .content > p:nth-child(2) {
+  margin: 5px 25px;
+}
+.appointment-time > p:nth-child(3) {
+  color: #339abd;
+  font-size: 10px;
+  line-height: 24px;
+  margin: 12px;
+}
+.appointment-address {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.appointment-address .content {
+  flex: 1;
+}
+.appointment-address .content > p {
+  margin: 0 25px;
+  font-size: 14px;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+}
+.appointment-address .content > p input,
+.appointment-address .content > p select,
+.appointment-address .content > p textarea {
+  font-weight: bold;
+  height: 25px;
+  line-height: 25px;
+  flex: 1;
+}
+.appointment-address .content > p textarea {
+  height: 50px;
+}
+.appointment-address .content > p label {
+  width: 60px;
+}
+.appointment-address .content > p button {
+  margin-left: 15px;
+}
+.appointment-address .content > p:nth-child(2) {
+  margin: 5px 25px;
+}
+.appointment-address > p:nth-child(3) {
+  color: #339abd;
+  font-size: 10px;
+  line-height: 24px;
+  margin: 12px;
+}
+.login-verify-code {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.login-verify-code .content {
+  flex: 1;
+}
+.login-verify-code .content > p {
+  margin: 0 25px;
+  font-size: 14px;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-verify-code .content > p input,
+.login-verify-code .content > p select,
+.login-verify-code .content > p textarea {
+  font-weight: bold;
+  height: 25px;
+  line-height: 25px;
+  flex: 1;
+}
+.login-verify-code .content > p textarea {
+  height: 50px;
+}
+.login-verify-code .content > p button {
+  margin-left: 15px;
+}
+.login-verify-code .content > p .big-button {
+  width: 100%;
+  margin: 30px 0;
+}
+.login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.login .content {
+  flex: 1;
+}
+.login .content > p {
+  margin: 0 25px;
+  font-size: 14px;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login .content > p input,
+.login .content > p select,
+.login .content > p textarea {
+  font-weight: bold;
+  height: 25px;
+  line-height: 25px;
+  flex: 1;
+}
+.login .content > p textarea {
+  height: 50px;
+}
+.login .content > p button {
+  margin-left: 15px;
+}
+.login .content > p .big-button {
+  width: 100%;
+  margin: 30px 0;
 }
 .app {
   width: 100%;

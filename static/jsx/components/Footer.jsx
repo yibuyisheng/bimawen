@@ -9,13 +9,13 @@ var Footer = React.createClass({
         return (
             <footer className="footer-component">
                 <Button onTap={leftButton.onTap}>
-                    首页
+                    预约
                 </Button>
                 <Button onTap={centerButton.onTap}>
-                    门店保养
+                    紧急
                 </Button>
                 <Button onTap={rightButton.onTap}>
-                    我
+                    我的
                 </Button>
             </footer>
         );

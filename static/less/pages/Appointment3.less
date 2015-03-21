@@ -1,0 +1,57 @@
+.appointment-3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        flex: 1;
+
+        &>p {
+            margin: 0 30px;
+            font-size: 14px;
+
+            &:nth-child(2), &:nth-child(3) {
+                line-height: 26px;
+            }
+
+            &:nth-child(3) {
+                font-weight: bold;
+            }
+
+            &:nth-child(2), &:nth-child(4) {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            &:nth-child(4) {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    &>p:nth-child(3) {
+        color: #339abd;
+        font-size: 10px;
+        line-height: 24px;
+        margin: 12px;
+    }
+
+    .addresses {
+        margin: 10px 30px;
+        p {
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 20px;
+            }
+
+            span {
+                flex: 1;
+                font-size: 12px;
+                line-height: 20px;
+                color: gray;
+            }
+        }
+    }
+}

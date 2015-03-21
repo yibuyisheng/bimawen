@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "react": "^0.12.2",
+    "react-addons": "^0.9.1-deprecated",
     "react-router": "^0.12.4"
   }
 }

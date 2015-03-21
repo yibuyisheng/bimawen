@@ -39,16 +39,16 @@ gulp.task('html', function() {
         .pipe(gulp.dest('./static/dist/'));
 });
 
-gulp.task('watch', ['less', 'js-pack'], function() {
+gulp.task('compile', ['less', 'js-pack', 'html']);
+
+gulp.task('watch', ['compile'], function() {
     return gulp.watch([
             './static/less/**/*.less',
             './static/jsx/**/*.jsx',
             './static/mobile/main.html'
-        ], [
-            'less',
-            'js-pack',
-            'html'
-        ]);
+        ], {
+            interval: 0
+        }, ['compile']);
     // gulp.watch(['./static/less/**/*.less'], ['less']);
     // gulp.watch(['./static/jsx/**/*.jsx'], ['js-pack']);
     // gulp.watch(['./static/mobile/main.html'], ['html']);

@@ -1,0 +1,48 @@
+.appointment-2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        flex: 1;
+
+        p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 30px;
+            font-size: 14px;
+
+            label {
+                width: 70px;
+            }
+
+            &>*:last-child {
+                flex: 1;
+            }
+        }
+
+        div {
+            margin: 20px 30px;
+
+            h4 {
+                margin: 0;
+                text-align: left;
+                font-size: 14px;
+                font-weight: normal;
+                margin-bottom: 4px;
+            }
+            textarea {
+                height: 100px;
+                width: 100%;
+            }
+        }
+    }
+
+    &>p:nth-child(3) {
+        color: #339abd;
+        font-size: 10px;
+        line-height: 24px;
+        margin: 12px;
+    }
+}
