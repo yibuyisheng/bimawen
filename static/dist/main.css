@@ -333,6 +333,33 @@ a {
   line-height: 24px;
   margin: 12px;
 }
+.appointment-success {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.appointment-success .content {
+  flex: 1;
+}
+.appointment-success .content > div {
+  margin: 15px 30px;
+  font-size: 14px;
+  display: flex;
+  line-height: 20px;
+}
+.appointment-success .content > div label {
+  width: 70px;
+}
+.appointment-success .content > div p {
+  font-weight: bold;
+  flex: 1;
+}
+.appointment-success > p:nth-child(3) {
+  color: #339abd;
+  font-size: 10px;
+  line-height: 24px;
+  margin: 12px;
+}
 .login-verify-code {
   flex: 1;
   display: flex;

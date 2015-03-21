@@ -7,6 +7,7 @@ var AppointmentTime = require('./pages/AppointmentTime.jsx');
 var AppointmentAddress = require('./pages/AppointmentAddress.jsx');
 var LoginVerifyCode = require('./pages/LoginVerifyCode.jsx');
 var Login = require('./pages/Login.jsx');
+var AppointmentSuccess = require('./pages/AppointmentSuccess.jsx');
 
 var Route = ReactRouter.Route;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
@@ -30,6 +31,7 @@ var routes = (
         <Route handler={Appointment1} path="appointment-1" />
         <Route handler={Appointment2} path="appointment-2" />
         <Route handler={Appointment3} path="appointment-3" />
+        <Route handler={AppointmentSuccess} path="appointment-success" />
         <Route handler={AppointmentTime} path="appointment-time" />
         <Route handler={AppointmentAddress} path="appointment-address" />
         <Route handler={LoginVerifyCode} path="login-verify-code" />

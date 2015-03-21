@@ -1,0 +1,32 @@
+.appointment-success {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        flex: 1;
+
+        &>div {
+            margin: 15px 30px;
+            font-size: 14px;
+            display: flex;
+            line-height: 20px;
+
+            label {
+                width: 70px;
+            }
+
+            p {
+                font-weight: bold;
+                flex: 1;
+            }
+        }
+    }
+
+    &>p:nth-child(3) {
+        color: #339abd;
+        font-size: 10px;
+        line-height: 24px;
+        margin: 12px;
+    }
+}
