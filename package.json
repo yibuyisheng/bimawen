@@ -13,6 +13,7 @@
     "gulp-concat": "^2.5.2",
     "gulp-jsx": "git://github.com/yibuyisheng/gulp-jsx",
     "gulp-less": "^3.0.1",
+    "gulp-sourcemaps": "^1.5.1",
     "jsx-loader": "^0.12.2",
     "q": "^1.2.0",
     "react-tools": "^0.13.1",

@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var path = require('path');
 var webpack = require('webpack');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('js-pack', function(done) {
     webpack({
@@ -25,12 +26,14 @@ gulp.task('js-pack', function(done) {
 
 gulp.task('less', function() {
     return gulp.src('./static/less/main.less')
-        .pipe(less({
-            paths: [path.join(__dirname, 'static', 'less')]
-        }))
-        .on('error', function(error) {
-            console.log(error);
-        })
+        .pipe(sourcemaps.init())
+            .pipe(less({
+                paths: [path.join(__dirname, 'static', 'less')]
+            }))
+            .on('error', function(error) {
+                console.log(error);
+            })
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./static/dist'));
 });
 
