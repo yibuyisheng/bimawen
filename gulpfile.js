@@ -27,6 +27,9 @@ gulp.task('js-pack', function(done) {
 gulp.task('less', function() {
     return gulp.src('./static/less/main.less')
         .pipe(sourcemaps.init())
+        .on('error', function(error) {
+            console.log(error);
+        })
             .pipe(less({
                 paths: [path.join(__dirname, 'static', 'less')]
             }))
@@ -34,6 +37,9 @@ gulp.task('less', function() {
                 console.log(error);
             })
         .pipe(sourcemaps.write())
+        .on('error', function(error) {
+            console.log(error);
+        })
         .pipe(gulp.dest('./static/dist'));
 });
 
