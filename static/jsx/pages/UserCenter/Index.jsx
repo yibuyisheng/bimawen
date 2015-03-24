@@ -1,6 +1,6 @@
-var React = require('react');
-var Header = require('../../components/Header.jsx');
-var Footer = require('../../components/Footer.jsx');
+import React from 'react';
+import Header from '../../components/Header.jsx';
+import Footer from '../../components/Footer.jsx';
 
 var Index = React.createClass({
     render: () => {
@@ -35,4 +35,4 @@ var Index = React.createClass({
     }
 });
 
-module.exports = Index;
+export default Index;

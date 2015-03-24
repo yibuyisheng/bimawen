@@ -1,8 +1,8 @@
-var React = require('react');
-var Header = require('../../components/Header.jsx');
-var Footer = require('../../components/Footer.jsx');
-var Title = require('../../components/Title.jsx');
-var Button = require('../../components/Button.jsx');
+import React from 'react';
+import Header from '../../components/Header.jsx';
+import Footer from '../../components/Footer.jsx';
+import Title from '../../components/Title.jsx';
+import Button from '../../components/Button.jsx';
 
 var MyInfo = React.createClass({
     render: function() {
@@ -18,4 +18,4 @@ var MyInfo = React.createClass({
     }
 });
 
-module.exports = MyInfo;
+export default MyInfo;

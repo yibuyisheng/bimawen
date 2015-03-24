@@ -1,8 +1,8 @@
-var React = require('react');
-var Header = require('../components/Header.jsx');
-var Footer = require('../components/Footer.jsx');
-var Title = require('../components/Title.jsx');
-var Button = require('../components/Button.jsx');
+import React from 'react';
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
+import Title from '../components/Title.jsx';
+import Button from '../components/Button.jsx';
 
 var Appointment2 = React.createClass({
     render: function() {
@@ -48,4 +48,4 @@ var Appointment2 = React.createClass({
     }
 });
 
-module.exports = Appointment2;
+export default Appointment2;

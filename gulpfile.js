@@ -16,11 +16,18 @@ gulp.task('js-pack', function(done) {
         },
         module: {
             loaders: [
-                { test: /\.jsx$/, loader: "jsx-loader?harmony" }
+                // { test: /\.jsx$/, loader: "jsx-loader?harmony" },
+                { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader" }
             ]
-        }
+        },
+        bail: true
     }, function(err) {
-        done(err);
+        if (err) {
+            console.log('file: ', err.module.userRequest);
+            console.log('line: ', err.error.lineNumber, 'column: ', err.error.column);
+            console.log(err.message);
+        }
+        done();
     });
 });
 
