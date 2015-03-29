@@ -15,6 +15,7 @@
     "gulp-concat": "^2.5.2",
     "gulp-jsx": "git://github.com/yibuyisheng/gulp-jsx",
     "gulp-less": "^3.0.1",
+    "gulp-postcss": "^4.0.3",
     "gulp-sourcemaps": "^1.5.1",
     "q": "^1.2.0",
     "react-tools": "^0.13.1",
@@ -23,6 +24,7 @@
   "dependencies": {
     "react": "^0.12.2",
     "react-addons": "^0.9.1-deprecated",
-    "react-router": "^0.12.4"
+    "react-router": "^0.12.4",
+    "reflux": "^0.2.7"
   }
 }

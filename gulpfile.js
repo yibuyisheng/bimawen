@@ -3,6 +3,7 @@ var less = require('gulp-less');
 var path = require('path');
 var webpack = require('webpack');
 var sourcemaps = require('gulp-sourcemaps');
+var postcss = require('gulp-postcss');
 
 gulp.task('js-pack', function(done) {
     webpack({
@@ -34,19 +35,15 @@ gulp.task('js-pack', function(done) {
 gulp.task('less', function() {
     return gulp.src('./static/less/main.less')
         .pipe(sourcemaps.init())
-        .on('error', function(error) {
-            console.log(error);
-        })
+        .on('error', handleError)
             .pipe(less({
                 paths: [path.join(__dirname, 'static', 'less')]
             }))
-            .on('error', function(error) {
-                console.log(error);
-            })
+            .on('error', handleError)
         .pipe(sourcemaps.write())
-        .on('error', function(error) {
-            console.log(error);
-        })
+        .on('error', handleError)
+        .pipe(postcss([ autoprefixer({ browsers: ['last 2 version'] }) ]))
+        .on('error', handleError)
         .pipe(gulp.dest('./static/dist'));
 });
 
@@ -60,7 +57,9 @@ gulp.task('compile', ['less', 'js-pack', 'html']);
 gulp.task('watch', ['compile'], function() {
     return gulp.watch([
             './static/less/**/*.less',
+            './static/less/**',
             './static/jsx/**/*.jsx',
+            './static/jsx/**',
             './static/mobile/main.html'
         ], {
             interval: 0
@@ -69,3 +68,10 @@ gulp.task('watch', ['compile'], function() {
     // gulp.watch(['./static/jsx/**/*.jsx'], ['js-pack']);
     // gulp.watch(['./static/mobile/main.html'], ['html']);
 });
+
+function handleError(error) {
+    console.log(error.message);
+    console.log(error.fileName);
+    console.log('line:', error.line, 'column:', error.column);
+    this.emit('end');
+}
