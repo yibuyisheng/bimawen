@@ -4,6 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 var sourcemaps = require('gulp-sourcemaps');
 var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer-core');
 
 gulp.task('js-pack', function(done) {
     webpack({
