@@ -3,6 +3,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import Title from '../components/Title.jsx';
 import Button from '../components/Button.jsx';
+import { HashLocation } from 'react-router';
 
 var AppointmentEmergencySuccess = React.createClass({
     render: function() {
@@ -33,7 +34,7 @@ var AppointmentEmergencySuccess = React.createClass({
                     </div>
                 </div>
                 <p>我们会在5分钟内给您致电，确认紧急服务。</p>
-                <Button className="big-button">返回</Button>
+                <Button className="big-button" onTap={() => HashLocation.pop()}>返回</Button>
                 <Footer></Footer>
             </div>
         );

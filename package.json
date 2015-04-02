@@ -26,6 +26,7 @@
     "react": "^0.12.2",
     "react-addons": "^0.9.1-deprecated",
     "react-router": "^0.12.4",
-    "reflux": "^0.2.7"
+    "reflux": "^0.2.7",
+    "utilities": "git://github.com/yibuyisheng/utilities"
   }
 }

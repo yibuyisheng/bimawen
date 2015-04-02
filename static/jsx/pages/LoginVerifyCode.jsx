@@ -1,14 +1,25 @@
-var React = require('react');
-var Header = require('../components/Header.jsx');
-var Footer = require('../components/Footer.jsx');
-var Title = require('../components/Title.jsx');
-var Button = require('../components/Button.jsx');
+import React from 'react';
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
+import Title from '../components/Title.jsx';
+import Button from '../components/Button.jsx';
+import { HashLocation } from 'react-router';
 
 var LoginVerifyCode = React.createClass({
-    render: function() {
+    onTouchEnd: function () {
+        HashLocation.replace('/login');
+    },
+    render: function () {
+        var leftButton = {
+            className: 'ion-android-home',
+            onTap: () => {
+                HashLocation.replace('/appointment-1');
+            }
+        };
+
         return (
             <div className="login-verify-code">
-                <Header>预约</Header>
+                <Header leftButton={leftButton}>预约</Header>
                 <Title>短信验证码登录</Title>
                 <div className="content">
                     <p>
@@ -22,7 +33,7 @@ var LoginVerifyCode = React.createClass({
                         <Button className="big-button">登录</Button>
                     </p>
                     <p>
-                        <a>切换到账号密码登录方式</a>
+                        <a onTouchEnd={ this.onTouchEnd }>切换到账号密码登录方式</a>
                     </p>
                 </div>
                 <Footer></Footer>

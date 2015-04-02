@@ -3,12 +3,19 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import Title from '../components/Title.jsx';
 import Button from '../components/Button.jsx';
+import { HashLocation } from 'react-router';
 
 var AppointmentSuccess = React.createClass({
     render: function() {
+        var leftButton = {
+            className: 'ion-android-home',
+            onTap: () => {
+                HashLocation.replace('/appointment-1');
+            }
+        };
         return (
             <div className="appointment-success">
-                <Header>考拉爱车</Header>
+                <Header leftButton={leftButton}>考拉爱车</Header>
                 <div className="content">
                     <Title>预约成功</Title>
                     <div>
@@ -36,7 +43,7 @@ var AppointmentSuccess = React.createClass({
                         <p>15001750001</p>
                     </div>
                 </div>
-                <Button className="big-button">返回首页</Button>
+                <Button className="big-button" onTap={() => HashLocation.push('/appointment-1')}>返回首页</Button>
                 <Footer></Footer>
             </div>
         );

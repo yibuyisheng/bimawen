@@ -3,21 +3,29 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import Title from '../components/Title.jsx';
 import Button from '../components/Button.jsx';
+import Select from '../components/Select.jsx';
+import { HashLocation } from 'react-router';
 
 var AppointmentAddress = React.createClass({
-    render: () => {
+    render: function () {
+        var leftButton = {
+            className: 'ion-chevron-left',
+            onTap: () => {
+                HashLocation.pop();
+            }
+        };
         return (
             <div className="appointment-address">
-                <Header>预约</Header>
+                <Header leftButton={leftButton}>预约</Header>
                 <div className="content">
                     <Title>编辑地址</Title>
                     <p>
-                        <select>
+                        <Select>
                             <option>上海市</option>
-                        </select>
-                        <select>
+                        </Select>
+                        <Select>
                             <option>普陀区</option>
-                        </select>
+                        </Select>
                     </p>
                     <p>
                         <textarea>棕榈路212弄36号303</textarea>

@@ -18,7 +18,6 @@ gulp.task('js-pack', function(done) {
         },
         module: {
             loaders: [
-                // { test: /\.jsx$/, loader: "jsx-loader?harmony" },
                 { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader" }
             ]
         },
@@ -48,26 +47,23 @@ gulp.task('less', function() {
         .pipe(gulp.dest('./static/dist'));
 });
 
-gulp.task('html', function() {
+gulp.task('html', function () {
     return gulp.src('./static/mobile/main.html')
         .pipe(gulp.dest('./static/dist/'));
 });
 
-gulp.task('compile', ['less', 'js-pack', 'html']);
+gulp.task('fonts', function () {
+    return gulp.src('./static/fonts/*')
+        .pipe(gulp.dest('./static/dist/fonts/'));
+});
+
+gulp.task('compile', ['less', 'js-pack', 'html', 'fonts']);
 
 gulp.task('watch', ['compile'], function() {
-    return gulp.watch([
-            './static/less/**/*.less',
-            './static/less/**',
-            './static/jsx/**/*.jsx',
-            './static/jsx/**',
-            './static/mobile/main.html'
-        ], {
-            interval: 0
-        }, ['compile']);
-    // gulp.watch(['./static/less/**/*.less'], ['less']);
-    // gulp.watch(['./static/jsx/**/*.jsx'], ['js-pack']);
-    // gulp.watch(['./static/mobile/main.html'], ['html']);
+    gulp.watch(['./static/less/**/*.less', ], ['less']);
+    gulp.watch(['./static/jsx/**/*.jsx', './static/jsx/**'], ['js-pack']);
+    gulp.watch(['./static/mobile/main.html'], ['html']);
+    gulp.watch(['./static/fonts/*.*', './static/fonts/**'], ['fonts']);
 });
 
 function handleError(error) {

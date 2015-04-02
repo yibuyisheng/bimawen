@@ -1,19 +1,25 @@
 @header-height: 45px;
 .header-component {
-    display: -webkit-box;
+    display: flex;
     height: @header-height;
-    -webkit-box-align: center;
+    align-items: center;
     background: #31b7ec;
     color: white;
+    padding-top: 20px;
 
     .button {
         border: none;
         width: 70px;
         background: transparent;
         color: white;
+
+        &.ion-android-home, &.ion-chevron-left, &.ion-person, &.ion-ios-gear {
+            font-size: 24px;
+            color: black;
+        }
     }
     h1 {
-        -webkit-box-flex: 1;
+        flex: 1;
         margin: 0;
         text-align: center;
         font-size: 14px;

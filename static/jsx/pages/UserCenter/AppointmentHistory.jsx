@@ -3,12 +3,25 @@ import Header from '../../components/Header.jsx';
 import Footer from '../../components/Footer.jsx';
 import Title from '../../components/Title.jsx';
 import Button from '../../components/Button.jsx';
+import { HashLocation } from 'react-router';
 
 var AppointmentHistory = React.createClass({
     render: function() {
+        var leftButton = {
+            className: 'ion-person',
+            onTap: () => {
+                HashLocation.pop();
+            }
+        };
+        var rightButton = {
+            className: 'ion-ios-gear',
+            onTap: () => {
+
+            }
+        };
         return (
             <div className="appointment-history">
-                <Header>个人中心</Header>
+                <Header leftButton={leftButton} rightButton={rightButton}>个人中心</Header>
                 <div className="content">
                     <Title>预约服务记录</Title>
                     <ul className="list">

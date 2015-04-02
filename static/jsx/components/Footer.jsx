@@ -1,20 +1,24 @@
-var React = require('react');
-var Button = require('./Button.jsx');
+import React from 'react';
+import Button from './Button.jsx';
+import { HashLocation } from 'react-router';
 
 var Footer = React.createClass({
     render: function() {
-        var leftButton = this.props.leftButton || {};
-        var centerButton = this.props.centerButton || {};
-        var rightButton = this.props.rightButton || {};
         return (
             <footer className="footer-component">
-                <Button onTap={leftButton.onTap}>
+                <Button onTap={() => HashLocation.replace('/appointment-1')}>
+                    <i className="ion-ios-calendar-outline" />
+                    <br />
                     预约
                 </Button>
-                <Button onTap={centerButton.onTap}>
+                <Button onTap={() => HashLocation.replace('/appointment-emergency-1')}>
+                    <i className="ion-ios-timer" />
+                    <br />
                     紧急
                 </Button>
-                <Button onTap={rightButton.onTap}>
+                <Button onTap={() => HashLocation.replace('/user-center/index')}>
+                    <i className="ion-person" />
+                    <br />
                     我的
                 </Button>
             </footer>

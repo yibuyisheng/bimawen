@@ -3,6 +3,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import Title from '../components/Title.jsx';
 import Button from '../components/Button.jsx';
+import { HashLocation } from 'react-router';
 
 var AppointmentEmergency1 = React.createClass({
     render: function() {
@@ -23,7 +24,10 @@ var AppointmentEmergency1 = React.createClass({
                     </ul>
                 </div>
                 <p>根据您的爱车车型，我们还可定制适合您爱车的机油。</p>
-                <Button className="big-button">开始紧急预约</Button>
+                <Button className="big-button"
+                    onTap={() => HashLocation.push('/appointment-emergency-2')}>
+                    开始紧急预约
+                </Button>
                 <Footer></Footer>
             </div>
         );

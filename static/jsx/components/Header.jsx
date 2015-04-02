@@ -7,9 +7,15 @@ var Header = React.createClass({
         var rightButton = this.props.rightButton || {};
         return (
             <header className="header-component">
-                <Button onTap={leftButton.onTap}>{leftButton.text}</Button>
+                <Button className={leftButton.className}
+                    onTap={leftButton.onTap}>
+                    {leftButton.text}
+                </Button>
                 <h1>{this.props.children}</h1>
-                <Button onTap={rightButton.onTap}>{rightButton.text}</Button>
+                <Button className={rightButton.className}
+                    onTap={rightButton.onTap}>
+                    {rightButton.text}
+                </Button>
             </header>
         );
     }

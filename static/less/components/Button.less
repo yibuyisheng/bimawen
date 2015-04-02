@@ -1,18 +1,26 @@
 .button {
     border: none;
     border-radius: 3px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.normal-button {
+.button:active {
+    background: rgba(100,100,100,0.1);
+}
+
+.button.normal-button {
     background: #31b7ec;
     color: white;
     padding: 5px 10px;
 }
 
-.big-button {
+.button.big-button {
     background: #31b7ec;
     color: white;
     font-size: 16px;
     padding: 10px;
     margin: 0 10px 25px 10px;
+}
+.button.big-button:active {
+    opacity: 0.9;
 }
