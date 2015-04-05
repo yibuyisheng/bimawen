@@ -1,16 +1,20 @@
 import ReactRouter from 'react-router';
 import React from 'react';
-import Appointment1 from './pages/Appointment1.jsx';
-import Appointment2 from './pages/Appointment2.jsx';
-import Appointment3 from './pages/Appointment3.jsx';
+
+import Appointment1 from './pages/Appointment/Appointment1.jsx';
+import Appointment2 from './pages/Appointment/Appointment2.jsx';
+import Appointment3 from './pages/Appointment/Appointment3.jsx';
+import AppointmentSuccess from './pages/Appointment/AppointmentSuccess.jsx';
+
 import AppointmentTime from './pages/AppointmentTime.jsx';
 import AppointmentAddress from './pages/AppointmentAddress.jsx';
 import LoginVerifyCode from './pages/LoginVerifyCode.jsx';
 import Login from './pages/Login.jsx';
-import AppointmentSuccess from './pages/AppointmentSuccess.jsx';
-import AppointmentEmergency1 from './pages/AppointmentEmergency1.jsx';
-import AppointmentEmergency2 from './pages/AppointmentEmergency2.jsx';
-import AppointmentEmergencySuccess from './pages/AppointmentEmergencySuccess.jsx';
+
+import AppointmentEmergency1 from './pages/AppointmentEmergency/AppointmentEmergency1.jsx';
+import AppointmentEmergency2 from './pages/AppointmentEmergency/AppointmentEmergency2.jsx';
+import AppointmentEmergencySuccess from './pages/AppointmentEmergency/AppointmentEmergencySuccess.jsx';
+
 import UserCenterIndex from './pages/UserCenter/Index.jsx';
 import AppointmentHistory from './pages/UserCenter/AppointmentHistory.jsx';
 import AppointmentEmergencyHistory from './pages/UserCenter/AppointmentEmergencyHistory.jsx';

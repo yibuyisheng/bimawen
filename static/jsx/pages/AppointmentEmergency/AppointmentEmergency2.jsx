@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import Title from '../components/Title.jsx';
-import Button from '../components/Button.jsx';
-import Select from '../components/Select.jsx';
+import Header from '../../components/Header.jsx';
+import Footer from '../../components/Footer.jsx';
+import Title from '../../components/Title.jsx';
+import Button from '../../components/Button.jsx';
+import Select from '../../components/Select.jsx';
 import { HashLocation } from 'react-router';
 
 var AppointmentEmergency2 = React.createClass({
@@ -39,7 +39,7 @@ var AppointmentEmergency2 = React.createClass({
                             普陀区棕榈路212弄36号303室<br />
                             顾刚 15001750001 [<b>默认地址</b>]
                         </p>
-                        <i>icon</i>
+                        <i className="ion-ios-compose-outline"></i>
                     </div>
                 </div>
                 <p>我们会在5分钟内给您致电，确认紧急服务。</p>

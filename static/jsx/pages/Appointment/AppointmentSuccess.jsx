@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import Title from '../components/Title.jsx';
-import Button from '../components/Button.jsx';
+import Header from '../../components/Header.jsx';
+import Footer from '../../components/Footer.jsx';
+import Title from '../../components/Title.jsx';
+import Button from '../../components/Button.jsx';
 import { HashLocation } from 'react-router';
 
 var AppointmentSuccess = React.createClass({

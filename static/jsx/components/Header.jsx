@@ -1,5 +1,5 @@
-var React = require('react');
-var Button = require('./Button.jsx');
+import React from 'react';
+import Button from './Button.jsx';
 
 var Header = React.createClass({
     render: function() {
@@ -21,4 +21,4 @@ var Header = React.createClass({
     }
 });
 
-module.exports = Header;
+export default Header;

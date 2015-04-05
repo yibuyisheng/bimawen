@@ -14,7 +14,7 @@ var ios = React.createClass({
     },
     render: function() {
         return (
-            <WebView ref="webView" url={"http://10.57.123.114:8000/static/dist/main.html"}
+            <WebView ref="webView" url={"http://192.168.1.138:8000/static/dist/main.html"}
                 style={styles.container}/>
         );
     }

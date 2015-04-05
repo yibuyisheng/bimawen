@@ -9,12 +9,12 @@ var Footer = React.createClass({
                 <Button onTap={() => HashLocation.replace('/appointment-1')}>
                     <i className="ion-ios-calendar-outline" />
                     <br />
-                    预约
+                    保养
                 </Button>
                 <Button onTap={() => HashLocation.replace('/appointment-emergency-1')}>
                     <i className="ion-ios-timer" />
                     <br />
-                    紧急
+                    救援
                 </Button>
                 <Button onTap={() => HashLocation.replace('/user-center/index')}>
                     <i className="ion-person" />
@@ -26,4 +26,4 @@ var Footer = React.createClass({
     }
 });
 
-module.exports = Footer;
+export default Footer;

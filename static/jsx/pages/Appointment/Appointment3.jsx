@@ -1,9 +1,10 @@
 import React from 'react';
-import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.jsx';
-import Title from '../components/Title.jsx';
-import Button from '../components/Button.jsx';
+import Header from '../../components/Header.jsx';
+import Footer from '../../components/Footer.jsx';
+import Title from '../../components/Title.jsx';
+import Button from '../../components/Button.jsx';
 import { HashLocation } from 'react-router';
+import Radio from '../../components/Radio.jsx';
 
 var Appointment3 = React.createClass({
     render: function () {
@@ -29,7 +30,7 @@ var Appointment3 = React.createClass({
                     </p>
                     <div className="addresses">
                         <p>
-                            <input type="radio" name="address" />
+                            <Radio />
                             <span>
                                 普陀区棕榈路212弄36号303室<br />
                                 顾刚 15001750001
@@ -37,7 +38,7 @@ var Appointment3 = React.createClass({
                             <i className="ion-compose"></i>
                         </p>
                         <p>
-                            <input type="radio" name="address" />
+                            <Radio />
                             <span>
                                 普陀区棕榈路212弄36号303室<br />
                                 顾刚 15001750001
@@ -45,7 +46,7 @@ var Appointment3 = React.createClass({
                             <i className="ion-compose"></i>
                         </p>
                         <p>
-                            <input type="radio" name="address" />
+                            <Radio />
                             <span>
                                 普陀区棕榈路212弄36号303室<br />
                                 顾刚 15001750001
@@ -53,7 +54,7 @@ var Appointment3 = React.createClass({
                             <i className="ion-compose"></i>
                         </p>
                         <p>
-                            <input type="radio" name="address" />
+                            <Radio />
                             <span>
                                 普陀区棕榈路212弄36号303室<br />
                                 顾刚 15001750001

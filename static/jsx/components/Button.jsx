@@ -1,5 +1,5 @@
-var React = require('react');
-var addons = require('react-addons');
+import React from 'react';
+import addons from 'react-addons';
 
 var Button = React.createClass({
     render: function() {
@@ -13,4 +13,4 @@ var Button = React.createClass({
     }
 });
 
-module.exports = Button;
+export default Button;
