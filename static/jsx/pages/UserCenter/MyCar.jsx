@@ -29,14 +29,18 @@ var MyCar = React.createClass({
                             <h4>沪B27585</h4>
                             大众朗逸1.6L 2011款
                         </div>
-                        <i>icon</i>
+                        <i className="ion-ios-compose-outline"></i>
                     </div>
                     <div>
                         <div>
                             <h4>沪B27585</h4>
                             大众朗逸1.6L 2011款
                         </div>
-                        <i>icon</i>
+                        <i className="ion-ios-compose-outline"></i>
+                    </div>
+
+                    <div>
+                        <Button className="big-button white">添加车辆</Button>
                     </div>
                 </div>
                 <Footer></Footer>
