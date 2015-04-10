@@ -5,6 +5,16 @@ var webpack = require('webpack');
 var sourcemaps = require('gulp-sourcemaps');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer-core');
+var webserver = require('gulp-webserver');
+
+gulp.task('webserver', function () {
+    return gulp.src('static')
+        .pipe(webserver({
+            host: '0.0.0.0',
+            port: 8000,
+            open: 'http://127.0.0.1:8000/dist/main.html'
+        }));
+});
 
 gulp.task('js-pack', function(done) {
     webpack({
@@ -59,7 +69,7 @@ gulp.task('fonts', function () {
 
 gulp.task('compile', ['less', 'js-pack', 'html', 'fonts']);
 
-gulp.task('watch', ['compile'], function() {
+gulp.task('watch', ['compile', 'webserver'], function() {
     gulp.watch(['./static/less/**/*.less', ], ['less']);
     gulp.watch(['./static/jsx/**/*.jsx', './static/jsx/**'], ['js-pack']);
     gulp.watch(['./static/mobile/main.html'], ['html']);

@@ -9,7 +9,10 @@ var Index = React.createClass({
             className: 'ion-person'
         };
         var rightButton = {
-            className: 'ion-ios-gear'
+            className: 'ion-ios-gear',
+            onTap: () => {
+                HashLocation.push('/user-center/account-set');
+            }
         };
         return (
             <div className="user-center-index">

@@ -21,7 +21,7 @@ import AppointmentEmergencyHistory from './pages/UserCenter/AppointmentEmergency
 import MyCar from './pages/UserCenter/MyCar.jsx';
 import MyAddress from './pages/UserCenter/MyAddress.jsx';
 import MyInfo from './pages/UserCenter/MyInfo.jsx';
-import AccountSet from './pages/UserCenter/AccountSet.jsx';
+import AccountSetIndex from './pages/UserCenter/AccountSet/Index.jsx';
 
 var Route = ReactRouter.Route;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
@@ -60,7 +60,11 @@ var routes = (
             <Route handler={MyCar} path="my-car" />
             <Route handler={MyAddress} path="my-address" />
             <Route handler={MyInfo} path="my-info" />
-            <Route handler={AccountSet} path="account-set" />
+            <Route path="account-set">
+                <Route handler={AccountSetIndex} path="index"></Route>
+                <DefaultRoute handler={AccountSetIndex} />
+            </Route>
+            <DefaultRoute handler={UserCenterIndex} />
         </Route>
         <DefaultRoute handler={Appointment1} />
     </Route>
