@@ -1,4 +1,17 @@
 @root-dir: './';
+@blue: #31b7ec;
+
+.pageFlex() {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.pageContentFlex() {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 
 @import '@{root-dir}common.less';
 @import '@{root-dir}fonts.less';
@@ -29,6 +42,8 @@
 @import '@{root-dir}pages/UserCenter/MyAddress.less';
 @import '@{root-dir}pages/UserCenter/MyInfo.less';
 @import '@{root-dir}pages/UserCenter/AccountSet/Index.less';
+@import '@{root-dir}pages/UserCenter/AccountSet/SelfInfo.less';
+@import '@{root-dir}pages/UserCenter/AccountSet/ModifyPhone.less';
 
 .app {
     width: 100%;

@@ -20,10 +20,16 @@ var Index = React.createClass({
                 </Header>
                 <div className="content">
                     <Title>账号设置</Title>
-                    <Button className="big-button blue-border white">基本信息</Button>
-                    <Button className="big-button blue-border white">修改注册手机号码</Button>
+                    <Button className="big-button blue-border white"
+                        onTap={() => HashLocation.push('/user-center/account-set/self-info')}>
+                        基本信息
+                    </Button>
+                    <Button className="big-button blue-border white"
+                        onTap={() => HashLocation.push('/user-center/account-set/modify-phone')}>
+                        修改注册手机号码
+                    </Button>
                     <div className="space"></div>
-                    <Button className="big-button white">修改注册手机号码</Button>
+                    <Button className="big-button white">退出登录</Button>
                 </div>
                 <Footer></Footer>
             </div>
