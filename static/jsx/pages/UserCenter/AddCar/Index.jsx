@@ -29,11 +29,13 @@ var Index = React.createClass({
                         选择品牌
                         <i className="ion-chevron-right"></i>
                     </Button>
-                    <Button className="big-button white">
+                    <Button className="big-button white"
+                        onTap={() => HashLocation.push('/user-center/add-car/select-series')}>
                         选择车系
                         <i className="ion-chevron-right"></i>
                     </Button>
-                    <Button className="big-button white">
+                    <Button className="big-button white"
+                        onTap={() => HashLocation.push('/user-center/add-car/select-model')}>
                         选择型号
                         <i className="ion-chevron-right"></i>
                     </Button>

@@ -70,8 +70,8 @@ gulp.task('fonts', function () {
 gulp.task('compile', ['less', 'js-pack', 'html', 'fonts']);
 
 gulp.task('watch', ['compile', 'webserver'], function() {
-    gulp.watch(['./static/less/**/*.less', ], ['less']);
-    gulp.watch(['./static/jsx/**/*.jsx', './static/jsx/**'], ['js-pack']);
+    gulp.watch(['./static/less/**', './static/less/**/*.less', ], ['less']);
+    gulp.watch(['./static/jsx/**', './static/jsx/**/*.jsx', './static/jsx/**'], ['js-pack']);
     gulp.watch(['./static/mobile/main.html'], ['html']);
     gulp.watch(['./static/fonts/*.*', './static/fonts/**'], ['fonts']);
 });
