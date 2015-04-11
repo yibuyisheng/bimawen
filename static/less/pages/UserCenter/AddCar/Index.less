@@ -1,0 +1,45 @@
+.margin() {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.user-center-add-car-index {
+    .pageFlex();
+
+    .content {
+        .pageContentFlex();
+
+        &>p {
+            color: gray;
+            background: #ffcc33;
+            font-size: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+
+            .margin();
+        }
+
+        .button {
+            .margin();
+            margin-bottom: 15px;
+
+            i {
+                float: right;
+            }
+        }
+
+        .number {
+            .margin();
+            display: flex;
+
+            input {
+                flex: 1;
+                margin-left: 3px;
+            }
+        }
+
+        .space {
+            flex: 1;
+        }
+    }
+}

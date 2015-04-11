@@ -24,6 +24,8 @@ import MyInfo from './pages/UserCenter/MyInfo.jsx';
 import AccountSetIndex from './pages/UserCenter/AccountSet/Index.jsx';
 import SelfInfo from './pages/UserCenter/AccountSet/SelfInfo.jsx';
 import ModifyPhone from './pages/UserCenter/AccountSet/ModifyPhone.jsx';
+import AddCarIndex from './pages/UserCenter/AddCar/Index.jsx';
+import SelectBrand from './pages/UserCenter/AddCar/SelectBrand.jsx';
 
 var Route = ReactRouter.Route;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
@@ -67,6 +69,11 @@ var routes = (
                 <Route handler={SelfInfo} path="self-info"></Route>
                 <Route handler={ModifyPhone} path="modify-phone"></Route>
                 <DefaultRoute handler={AccountSetIndex} />
+            </Route>
+            <Route path="add-car">
+                <Route handler={AddCarIndex} path="index"></Route>
+                <Route handler={SelectBrand} path="select-brand"></Route>
+                <DefaultRoute handler={AddCarIndex} />
             </Route>
             <DefaultRoute handler={UserCenterIndex} />
         </Route>

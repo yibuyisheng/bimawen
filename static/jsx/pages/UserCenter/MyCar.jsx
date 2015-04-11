@@ -40,7 +40,10 @@ var MyCar = React.createClass({
                     </div>
 
                     <div>
-                        <Button className="big-button white">添加车辆</Button>
+                        <Button className="big-button white"
+                            onTap={() => HashLocation.push('/user-center/add-car/index')}>
+                            添加车辆
+                        </Button>
                     </div>
                 </div>
                 <Footer></Footer>
