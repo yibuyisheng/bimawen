@@ -8,7 +8,7 @@ import { HashLocation } from 'react-router';
 var AppointmentHistory = React.createClass({
     render: function() {
         var leftButton = {
-            className: 'ion-person',
+            className: 'ion-chevron-left',
             onTap: () => {
                 HashLocation.pop();
             }
@@ -23,25 +23,25 @@ var AppointmentHistory = React.createClass({
             <div className="appointment-history">
                 <Header leftButton={leftButton} rightButton={rightButton}>个人中心</Header>
                 <div className="content">
-                    <Title>预约服务记录</Title>
+                    <Title>车辆保养记录</Title>
                     <ul className="list">
                         <li>
                             <span>2015-3-1</span>
                             <span>小保养</span>
-                            <span>228元</span>
-                            <i>icon</i>
+                            <span className="appointment">预约</span>
+                            <i className="ion-chevron-right"></i>
                         </li>
                         <li>
                             <span>2015-3-1</span>
                             <span>小保养</span>
-                            <span>228元</span>
-                            <i>icon</i>
+                            <span className="complete">完成</span>
+                            <i className="ion-chevron-right"></i>
                         </li>
                         <li>
                             <span>2015-3-1</span>
                             <span>小保养</span>
-                            <span>228元</span>
-                            <i>icon</i>
+                            <span className="cancel">取消</span>
+                            <i className="ion-chevron-right"></i>
                         </li>
                     </ul>
                 </div>

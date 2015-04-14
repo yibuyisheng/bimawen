@@ -19,7 +19,7 @@ var LoginVerifyCode = React.createClass({
 
         return (
             <div className="login-verify-code">
-                <Header leftButton={leftButton}>预约</Header>
+                <Header>登录</Header>
                 <Title>短信验证码登录</Title>
                 <div className="content">
                     <p>
@@ -31,9 +31,6 @@ var LoginVerifyCode = React.createClass({
                     </p>
                     <p>
                         <Button className="big-button">登录</Button>
-                    </p>
-                    <p>
-                        <a onTouchEnd={ this.onTouchEnd }>切换到账号密码登录方式</a>
                     </p>
                 </div>
                 <Footer></Footer>

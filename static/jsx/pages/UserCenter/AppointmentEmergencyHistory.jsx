@@ -8,7 +8,7 @@ import { HashLocation } from 'react-router';
 var AppointmentEmergencyHistory = React.createClass({
     render: function() {
         var leftButton = {
-            className: 'ion-person',
+            className: 'ion-chevron-left',
             onTap: () => {
                 HashLocation.pop();
             }
@@ -28,12 +28,14 @@ var AppointmentEmergencyHistory = React.createClass({
                         <li>
                             <span>2015-3-1 8:45</span>
                             <span>车胎缺气</span>
-                            <i>icon</i>
+                            <span className="appointment">预约</span>
+                            <i className="ion-chevron-right"></i>
                         </li>
                         <li>
                             <span>2015-3-1 8:45</span>
                             <span>电瓶缺电</span>
-                            <i>icon</i>
+                            <span className="appointment">预约</span>
+                            <i className="ion-chevron-right"></i>
                         </li>
                     </ul>
                 </div>

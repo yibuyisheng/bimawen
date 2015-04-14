@@ -17,7 +17,7 @@ var Appointment1 = React.createClass({
     },
     goAppointment: function () {
         var stop = userStore.listen(function (isLogin) {
-            HashLocation.push(isLogin ? 'appointment-2' : '/login');
+            HashLocation.push(isLogin ? 'appointment-2' : '/login-verify-code');
             stop();
         });
         var obj = actions.user.isLogin();

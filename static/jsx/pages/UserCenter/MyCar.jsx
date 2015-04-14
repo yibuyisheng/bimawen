@@ -23,10 +23,10 @@ var MyCar = React.createClass({
             <div className="my-car">
                 <Header leftButton={leftButton} rightButton={rightButton}>个人中心</Header>
                 <div className="content">
-                    <Title>我的车辆</Title>
+                    <Title>我的车库</Title>
                     <div>
                         <div>
-                            <h4>沪B27585</h4>
+                            <h4>沪B27585&nbsp;&nbsp;&nbsp;<b>[默认]</b></h4>
                             大众朗逸1.6L 2011款
                         </div>
                         <i className="ion-ios-compose-outline"></i>
