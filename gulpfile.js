@@ -13,7 +13,8 @@ gulp.task('webserver', function () {
             host: '0.0.0.0',
             port: 8000,
             open: 'http://127.0.0.1:8000/dist/main.html'
-        }));
+        }))
+        .on('error', handleError);
 });
 
 gulp.task('js-pack', function(done) {
