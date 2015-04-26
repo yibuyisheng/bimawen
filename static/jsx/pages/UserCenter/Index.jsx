@@ -6,18 +6,14 @@ import { HashLocation } from 'react-router';
 var Index = React.createClass({
     render: function () {
         var leftButton = {
-            className: 'ion-person'
-        };
-        var rightButton = {
-            className: 'ion-ios-gear',
+            className: 'ion-person',
             onTap: () => {
                 HashLocation.push('/user-center/account-set');
             }
         };
         return (
             <div className="user-center-index">
-                <Header leftButton={leftButton}
-                    rightButton={rightButton}>
+                <Header leftButton={leftButton}>
                     个人中心
                 </Header>
                 <div className="content">

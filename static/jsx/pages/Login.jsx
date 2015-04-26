@@ -10,7 +10,7 @@ import Reflux from 'reflux';
 import { base } from 'utilities';
 
 var Login = React.createClass({
-    mixins: [Reflux.ListenerMixin],
+    mixins: [Reflux.connect(userStore, 'user')],
     onTouchEnd: function () {
         HashLocation.replace('/login-verify-code');
     },
