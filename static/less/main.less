@@ -5,11 +5,21 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
 }
 .pageContentFlex() {
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+.of() {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
 }
 
 
@@ -48,6 +58,8 @@
 @import '@{root-dir}pages/UserCenter/AddCar/SelectBrand.less';
 @import '@{root-dir}pages/UserCenter/AddCar/SelectSeries.less';
 @import '@{root-dir}pages/UserCenter/AddCar/SelectModel.less';
+@import '@{root-dir}pages/Flow.less';
+@import '@{root-dir}pages/CheckDetail.less';
 
 .app {
     width: 100%;

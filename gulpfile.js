@@ -8,11 +8,17 @@ var autoprefixer = require('autoprefixer-core');
 var webserver = require('gulp-webserver');
 
 gulp.task('webserver', function () {
+    var remoteHost = 'http://121.40.167.199/';
     return gulp.src('static')
         .pipe(webserver({
             host: '0.0.0.0',
             port: 8000,
-            open: 'http://127.0.0.1:8000/dist/main.html'
+            open: 'http://127.0.0.1:8000/dist/main.html',
+            proxies: [
+                // {source: '/account/sign/in/', target: remoteHost + 'account/sign/in/'},
+                {source: '/account/send/validate_code/', target: remoteHost + 'account/send/validate_code/'},
+                {source: '/account/sign/in/', target: remoteHost + 'account/sign/in/'}
+            ]
         }))
         .on('error', handleError);
 });
@@ -71,8 +77,8 @@ gulp.task('fonts', function () {
 gulp.task('compile', ['less', 'js-pack', 'html', 'fonts']);
 
 gulp.task('watch', ['compile', 'webserver'], function() {
-    gulp.watch(['./static/less/**', './static/less/**/*.less', ], ['less']);
-    gulp.watch(['./static/jsx/**', './static/jsx/**/*.jsx', './static/jsx/**'], ['js-pack']);
+    gulp.watch(['./static/less/**', './static/less/**/*.less'], ['less']);
+    gulp.watch(['./static/jsx/**', './static/jsx/**/*.jsx'], ['js-pack']);
     gulp.watch(['./static/mobile/main.html'], ['html']);
     gulp.watch(['./static/fonts/*.*', './static/fonts/**'], ['fonts']);
 });

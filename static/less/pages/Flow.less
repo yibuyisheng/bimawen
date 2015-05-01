@@ -1,0 +1,52 @@
+.flow-page {
+    .pageFlex();
+
+    .main {
+        margin: 0 15px;
+
+        li {
+            display: flex;
+
+            p {
+                font-size: 14px;
+                line-height: 18px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+
+                b {
+                    width: 50px;
+                    height: 50px;
+                    color: white;
+                    background: @blue;
+                    border-radius: 25px;
+                    display: block;
+                    text-align: center;
+                    line-height: 50px;
+                }
+
+                i {
+                    display: block;
+                    flex: 1;
+                    width: 2px;
+                    background: @blue;
+                }
+
+                &:first-child {
+                    margin-right: 10px;
+                }
+                &:last-child {
+                    flex: 1;
+                    border: 1px dashed gray;
+                    margin-bottom: 20px;
+                    padding: 3px;
+                }
+            }
+
+            &:last-child p i {
+                background: none;
+            }
+        }
+    }
+}

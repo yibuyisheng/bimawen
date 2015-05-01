@@ -1,13 +1,13 @@
 import Reflux from 'reflux';
-import actions from '../actions.jsx';
+import { userActions } from '../actions/index.jsx';
 
 var userStore = Reflux.createStore({
-    listenables: actions.user,
-    onLoginSuccess: function() {
-
+    listenables: userActions,
+    onLoginSuccess: function(data) {
+        this.trigger({status: 1, data: data});
     },
-    onLoginFailed: function() {
-
+    onLoginFailed: function(error) {
+        this.trigger({status: 0, message: error.message ? error.message : '未知错误'});
     }
 });
 

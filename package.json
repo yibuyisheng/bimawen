@@ -19,11 +19,15 @@
     "gulp-postcss": "^4.0.3",
     "gulp-sourcemaps": "^1.5.1",
     "gulp-webserver": "^0.9.0",
+    "proxy": "git://github.com/yibuyisheng/proxy",
     "q": "^1.2.0",
     "react-tools": "^0.13.1",
     "webpack": "^1.7.3"
   },
   "dependencies": {
+    "es6-promise": "^2.1.1",
+    "hammerjs": "^2.0.4",
+    "proxy": "git://github.com/yibuyisheng/proxy",
     "react": "^0.12.2",
     "react-addons": "^0.9.1-deprecated",
     "react-router": "^0.12.4",

@@ -28,6 +28,8 @@ import AddCarIndex from './pages/UserCenter/AddCar/Index.jsx';
 import SelectBrand from './pages/UserCenter/AddCar/SelectBrand.jsx';
 import SelectSeries from './pages/UserCenter/AddCar/SelectSeries.jsx';
 import SelectModel from './pages/UserCenter/AddCar/SelectModel.jsx';
+import Flow from './pages/Flow.jsx';
+import CheckDetail from './pages/CheckDetail.jsx';
 
 var Route = ReactRouter.Route;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
@@ -59,6 +61,8 @@ var routes = (
         <Route handler={AppointmentEmergency1} path="appointment-emergency-1" />
         <Route handler={AppointmentEmergency2} path="appointment-emergency-2" />
         <Route handler={AppointmentEmergencySuccess} path="appointment-emergency-success" />
+        <Route handler={Flow} path="flow" />
+        <Route handler={CheckDetail} path="check-detail" />
         <Route path="user-center">
             <Route handler={UserCenterIndex} path="index" />
             <Route handler={AppointmentHistory} path="appointment-history" />

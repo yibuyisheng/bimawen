@@ -19,37 +19,26 @@ var Appointment2 = React.createClass({
         };
         return (
             <div className="appointment-2">
-                <Header leftButton={leftButton}>考拉爱车</Header>
+                <Header leftButton={leftButton}>预约小保养</Header>
                 <div className="content">
                     <Title>车辆信息</Title>
-                    <p>
-                        <label>车牌号码</label>
-                        <Select>
-                            <option value="0">沪</option>
-                        </Select>
-                        <input type="text" />
-                    </p>
-                    <p>
-                        <label>车辆品牌</label>
-                        <Select>
-                            <option value="0">请选择品牌</option>
-                        </Select>
-                    </p>
-                    <p>
-                        <label>车辆型号</label>
-                        <Select>
-                            <option value="0">请选择车型</option>
-                        </Select>
-                    </p>
-                    <p>
-                        <label>车辆年份</label>
-                        <Select>
-                            <option value="0">请选择车型年份</option>
-                        </Select>
-                    </p>
-                    <div>
-                        <h4>车辆备注</h4>
-                        <textarea></textarea>
+                    <div className="main">
+                        <p className="no-car">您还没有添加车辆</p>
+                        <div className="car">
+                            <section>
+                                <h3>沪C 45H5F</h3>
+                                <p>马自达 CX-5 2014款 2.0L</p>
+                            </section>
+                            <i className="ion-ios-compose-outline"></i>
+                        </div>
+                        <div className="car selected">
+                            <section>
+                                <h3>沪C 45H5F</h3>
+                                <p>马自达 CX-5 2014款 2.0L</p>
+                            </section>
+                            <i className="ion-ios-compose-outline"></i>
+                        </div>
+                        <Button className="big-button white blue-border">添加车辆</Button>
                     </div>
                 </div>
                 <Button className="big-button" onTap={this.nextStep}>下一步</Button>

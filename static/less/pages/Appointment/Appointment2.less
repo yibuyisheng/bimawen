@@ -1,41 +1,52 @@
 .appointment-2 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    .pageFlex();
 
-    .content {
+    .main {
         flex: 1;
+        margin: 0 30px;
 
-        p {
+        .no-car {
+            height: 80px;
+            background: #ccc;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        .car {
+            padding: 15px;
+            border: 1px solid @blue;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 30px;
-            font-size: 14px;
+            align-items: flex-start;
+            margin-bottom: 10px;
 
-            label {
-                width: 70px;
+            &.selected {
+                background: @blue;
+                color: white;
             }
 
-            &>*:last-child {
+            section {
                 flex: 1;
+
+                h3 {
+                    margin: 0 0 10px 0;
+                    font-size: 16px;
+                }
+
+                p {
+                    font-size: 15px;
+                }
+            }
+
+            i {
+                font-size: 24px;
             }
         }
 
-        div {
-            margin: 20px 30px;
-
-            h4 {
-                margin: 0;
-                text-align: left;
-                font-size: 14px;
-                font-weight: normal;
-                margin-bottom: 4px;
-            }
-            textarea {
-                height: 100px;
-                width: 100%;
-            }
+        .button {
+            width: 100%;
+            margin: 10px 0;
         }
     }
 

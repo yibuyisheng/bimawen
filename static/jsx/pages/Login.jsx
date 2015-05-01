@@ -4,20 +4,17 @@ import Footer from '../components/Footer.jsx';
 import Title from '../components/Title.jsx';
 import Button from '../components/Button.jsx';
 import { HashLocation } from 'react-router';
-import actions from '../actions.jsx';
 import userStore from '../store/User.jsx';
 import Reflux from 'reflux';
 import { base } from 'utilities';
 
 var Login = React.createClass({
-    mixins: [Reflux.connect(userStore, 'user')],
     onTouchEnd: function () {
         HashLocation.replace('/login-verify-code');
     },
     onLogin: function () {
         var phone = this.refs.phone.getDOMNode().value;
         var password = this.refs.password.getDOMNode().value;
-        actions.user.login(phone, password);
     },
     onLoginEnd: function (result) {
         if (base.isString(result)) {
