@@ -10,13 +10,27 @@
         .pageContentFlex();
 
         &>p {
-            color: gray;
-            background: #ffcc33;
+            color: @orange;
             font-size: 12px;
             margin-bottom: 10px;
             text-align: center;
 
             .margin();
+        }
+
+        .ready, .current, .wait {
+            border: 1px solid #ddd;
+            color: black;
+        }
+        .ready, .current {
+            background: white;
+        }
+        .current {
+            color: @blue;
+            border-color: @blue;
+        }
+        .wait {
+            background: #eee;
         }
 
         .button {
@@ -40,6 +54,16 @@
 
         .space {
             flex: 1;
+        }
+
+        .default-box {
+            margin: 10px 25px 0 25px;
+
+            i {
+                margin-right: 4px;
+                font-size: 20px;
+                vertical-align: middle;
+            }
         }
     }
 }

@@ -16,13 +16,12 @@ let Appointment1 = React.createClass({
         };
     },
     goAppointment: function() {
-        // isLogin()
-        //     .then(() => {
-        //         HashLocation.push('appointment-2');
-        //     }, () => {
-        //         HashLocation.push('/login-verify-code');
-        //     });
-        HashLocation.push('appointment-2');
+        isLogin()
+            .then(() => {
+                HashLocation.push('appointment-2');
+            }, () => {
+                HashLocation.push('/login-verify-code');
+            });
     },
     onTabSwitch: function(showTab) {
         if (showTab === 'small') {

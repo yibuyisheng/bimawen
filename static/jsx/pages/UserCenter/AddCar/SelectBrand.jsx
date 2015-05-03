@@ -5,9 +5,56 @@ import Footer from '../../../components/Footer.jsx';
 import Title from '../../../components/Title.jsx';
 import Button from '../../../components/Button.jsx';
 import Select from '../../../components/Select.jsx';
+import { getAllCarBrand } from '../../../services/car.jsx';
+import { arrayHelper, base, urlHelper } from 'utilities';
+import Tap from '../../../components/Tap.jsx';
+import ReactRouter from 'react-router';
 
 var SelectBrand = React.createClass({
-    render: function () {
+    mixins: [ ReactRouter.State ],
+    onSelect: function(brand) {
+        var originParams = this.getQuery();
+        var url = urlHelper.buildUrl('/user-center/add-car', base.extend(originParams, {
+            brand: brand.id,
+            brand_name: brand.brand_name
+        }));
+        HashLocation.replace(url);
+    },
+    componentDidMount: function() {
+        getAllCarBrand()
+            .then((json) => {
+                this.setState({
+                    brands: arrayHelper.groupBy(json, (b) => { return b.brand_aleph })
+                });
+            });
+    },
+    _renderBrands: function() {
+        if (!this.state || !this.state.brands) return;
+
+        var keys = Object.keys(this.state.brands);
+        var self = this;
+        return keys.map((key) => {
+            return (
+                <section>
+                    <h3>{key}</h3>
+                    {this.state.brands[key].map(_renderItem)}
+                </section>
+            );
+        });
+
+        function _renderItem(b) {
+            return (
+                <Tap onTap={() => self.onSelect(b)}>
+                    <p>
+                        <img src="" />
+                        {b.brand_name}
+                        <i className="ion-chevron-right"></i>
+                    </p>
+                </Tap>
+            );
+        }
+    },
+    render: function() {
         var leftButton = {
             className: 'ion-chevron-left',
             onTap: () => {
@@ -21,33 +68,9 @@ var SelectBrand = React.createClass({
                 </Header>
                 <div className="content">
                     <Title>选择品牌</Title>
-                    <h3>A</h3>
-                    <p>
-                        <img src="" />
-                        奥迪
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <h3>B</h3>
-                    <p>
-                        <img src="" />
-                        宝骏
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <p>
-                        <img src="" />
-                        宝马
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <p>
-                        <img src="" />
-                        保时捷
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <p>
-                        <img src="" />
-                        奔驰
-                        <i className="ion-chevron-right"></i>
-                    </p>
+                    <div className="main">
+                        {this._renderBrands()}
+                    </div>
                 </div>
                 <Footer></Footer>
             </div>

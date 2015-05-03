@@ -5,8 +5,45 @@ import Footer from '../../../components/Footer.jsx';
 import Title from '../../../components/Title.jsx';
 import Button from '../../../components/Button.jsx';
 import Select from '../../../components/Select.jsx';
+import { getSeries } from '../../../services/car.jsx';
+import ReactRouter from 'react-router';
+import Tap from '../../../components/Tap.jsx';
+import { urlHelper, base } from 'utilities';
 
 var SelectSeries = React.createClass({
+    mixins: [ ReactRouter.State ],
+    onSelect: function(s) {
+        var originParams = this.getQuery();
+        var url = urlHelper.buildUrl('/user-center/add-car', base.extend(originParams, {
+            series: s.id,
+            series_name: s.series_name
+        }));
+        HashLocation.replace(url);
+    },
+    componentDidMount: function() {
+        getSeries(this.getQuery().brand)
+            .then((json) => {
+                this.setState({
+                    series: json
+                });
+            });
+    },
+    _renderSeries: function() {
+        if (!this.state || !this.state.series) {
+            return;
+        }
+
+        return this.state.series.map((s) => {
+            return (
+                <Tap onTap={() => this.onSelect(s)}>
+                    <p>
+                        {s.series_name}
+                        <i className="ion-chevron-right"></i>
+                    </p>
+                </Tap>
+            );
+        });
+    },
     render: function () {
         var leftButton = {
             className: 'ion-chevron-left',
@@ -21,26 +58,9 @@ var SelectSeries = React.createClass({
                 </Header>
                 <div className="content">
                     <Title>选择车系</Title>
-                    <p>
-                        马自达1
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <p>
-                        马自达2
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <p>
-                        马自达3
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <p>
-                        马自达4
-                        <i className="ion-chevron-right"></i>
-                    </p>
-                    <p>
-                        马自达5
-                        <i className="ion-chevron-right"></i>
-                    </p>
+                    <div className="main">
+                        {this._renderSeries()}
+                    </div>
                 </div>
                 <Footer></Footer>
             </div>

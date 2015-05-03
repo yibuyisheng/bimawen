@@ -2,7 +2,10 @@
     .pageFlex();
 
     .content {
-        .pageContentFlex();
+        .main {
+            flex: 1;
+            .of();
+        }
 
         p {
             margin: 0 10px;
@@ -15,14 +18,14 @@
                 background: #f8f8f8;
             }
 
-            &:last-child {
-                border-bottom: 1px solid #ddd;
-            }
-
             i {
                 float: right;
                 color: gray;
             }
+        }
+
+        tap:last-child p {
+            border-bottom: 1px solid #ddd;
         }
     }
 }

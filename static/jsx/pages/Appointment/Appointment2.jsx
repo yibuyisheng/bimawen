@@ -5,10 +5,49 @@ import Title from '../../components/Title.jsx';
 import Button from '../../components/Button.jsx';
 import Select from '../../components/Select.jsx';
 import { HashLocation } from 'react-router';
+import { getMyCars } from '../../services/car.jsx';
+import addons from 'react-addons';
 
 var Appointment2 = React.createClass({
     nextStep: function () {
         HashLocation.push('/appointment-3');
+    },
+    getInitialState: function() {
+        return {};
+    },
+    componentDidMount: function() {
+        getMyCars()
+            .then((cars) => {
+                this.setState({
+                    cars: cars
+                });
+            }, (error) => {
+                alert(error.message ? error.message : '未知错误');
+            });
+    },
+    _renderCar: function(cars) {
+        if (!cars || !cars.length) {
+            return (<p className="no-car">您还没有添加车辆</p>);
+        }
+
+        return (
+            cars.map((car) => {
+                var carClass = addons.classSet({
+                    'car': true,
+                    'selected': !!car.selected
+                });
+
+                return (
+                    <div className={carClass}>
+                        <section>
+                            <h3>沪C 45H5F</h3>
+                            <p>马自达 CX-5 2014款 2.0L</p>
+                        </section>
+                        <i className="ion-ios-compose-outline"></i>
+                    </div>
+                );
+            })
+        );
     },
     render: function() {
         var leftButton = {
@@ -23,22 +62,11 @@ var Appointment2 = React.createClass({
                 <div className="content">
                     <Title>车辆信息</Title>
                     <div className="main">
-                        <p className="no-car">您还没有添加车辆</p>
-                        <div className="car">
-                            <section>
-                                <h3>沪C 45H5F</h3>
-                                <p>马自达 CX-5 2014款 2.0L</p>
-                            </section>
-                            <i className="ion-ios-compose-outline"></i>
-                        </div>
-                        <div className="car selected">
-                            <section>
-                                <h3>沪C 45H5F</h3>
-                                <p>马自达 CX-5 2014款 2.0L</p>
-                            </section>
-                            <i className="ion-ios-compose-outline"></i>
-                        </div>
-                        <Button className="big-button white blue-border">添加车辆</Button>
+                        {this._renderCar(this.state.cars)}
+                        <Button className="big-button white blue-border"
+                            onTap={() => {HashLocation.push('/user-center/add-car')}}>
+                            添加车辆
+                        </Button>
                     </div>
                 </div>
                 <Button className="big-button" onTap={this.nextStep}>下一步</Button>
