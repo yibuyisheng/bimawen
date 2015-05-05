@@ -24,7 +24,9 @@ gulp.task('webserver', function () {
                 {source: '/account/query/province/', target: remoteHost + 'account/query/province/'},
                 {source: '/account/my/car/default/', target: remoteHost + 'account/my/car/default/'},
                 {source: '/account/my/address/list/', target: remoteHost + 'account/my/address/list/'},
-                {source: '/account/my/address/default/', target: remoteHost + 'account/my/address/default/'}
+                {source: '/account/my/address/default/', target: remoteHost + 'account/my/address/default/'},
+                {source: '/account/query/city/', target: remoteHost + 'account/query/city/'},
+                {source: '/account/my/address/', target: remoteHost + 'account/my/address/'}
             ]
         }))
         .on('error', handleError);

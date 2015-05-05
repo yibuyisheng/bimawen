@@ -7,11 +7,13 @@ import { HashLocation } from 'react-router';
 import Radio from '../../components/Radio.jsx';
 import { dateHelper } from 'utilities';
 import ReactRouter from 'react-router';
-import { getMyAddresses } from '../../services/user.jsx';
+import { getMyAddresses, saveAddress } from '../../services/user.jsx';
 import Tap from '../../components/Tap.jsx';
 import Select from '../../components/Select.jsx';
 import addons from 'react-addons';
 import { send } from '../../services/verifyCode.jsx';
+import { getRegions } from '../../services/car.jsx';
+import AlertTransfer from '../../transfers/AlertTransfer.jsx';
 
 var EditAddress = React.createClass({
     sendCode: function() {
@@ -54,7 +56,48 @@ var EditAddress = React.createClass({
     onAddAddress: function() {
         HashLocation.push();
     },
+    onCityChange: function() {
+        this.setState({
+            currentCityName: this.refs.city.getDOMNode().value
+        });
+    },
+    onSave: function() {
+        AlertTransfer.show('title', 'content');
+        //saveAddress(
+        //    this.refs.city.getDOMNode().value,
+        //    this.refs.region.getDOMNode().value,
+        //    this.refs.detailAddress.getDOMNode().value,
+        //    this.refs.contact.getDOMNode().value,
+        //    this.refs.mobile.getDOMNode().value
+        //).then(() => alert('成功'));
+    },
+    _renderCities: function() {
+        if (!this.regions) return;
+        return this.regions.map((region) => {
+            return (<option>{region.name}</option>);
+        });
+    },
+    _renderRegions: function(currentCityName) {
+        if (!this.regions) return;
+        var regions;
+        for (var i = 0, il = this.regions.length; i < il; i++) {
+            if (this.regions[i].name === currentCityName) {
+                regions = this.regions[i].cities;
+            }
+        }
+        if (!regions) return;
+        return regions.map((region) => {
+            return (<option>{region}</option>);
+        });
+    },
     getInitialState: function() {
+        getRegions()
+            .then((json) => {
+                this.regions = json;
+                this.setState({
+                    currentCityName: json[0].name
+                });
+            });
         return {
             verifyCodeButton: {
                 text: '获取验证码',
@@ -81,19 +124,19 @@ var EditAddress = React.createClass({
                     <Title>编辑地址</Title>
                     <div className="main">
                         <div>
-                            <Select>
-                                <option>上海市</option>
+                            <Select ref="city" onChange={this.onCityChange}>
+                                {this._renderCities()}
                             </Select>
-                            <Select>
-                                <option>普陀区</option>
+                            <Select ref="region">
+                                {this._renderRegions(this.state.currentCityName)}
                             </Select>
                         </div>
                         <div>
-                            <textarea placeholder="详细地址"></textarea>
+                            <textarea ref="detailAddress" placeholder="详细地址"></textarea>
                         </div>
                         <div>
                             <label>联系人</label>
-                            <input type="text" />
+                            <input type="text" ref="contact" />
                         </div>
                         <div>
                             <label>联系电话</label>
@@ -113,7 +156,7 @@ var EditAddress = React.createClass({
                         </div>
                     </div>
                 </div>
-                <Button className="big-button">保存地址</Button>
+                <Button className="big-button" onTap={this.onSave}>保存地址</Button>
                 <Footer></Footer>
             </div>
         );

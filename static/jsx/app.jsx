@@ -32,6 +32,10 @@ import SelectSeries from './pages/UserCenter/AddCar/SelectSeries.jsx';
 import SelectModel from './pages/UserCenter/AddCar/SelectModel.jsx';
 import Flow from './pages/Flow.jsx';
 import CheckDetail from './pages/CheckDetail.jsx';
+import Alert from './components/Alert.jsx';
+
+import AlertTransfer from './transfers/AlertTransfer.jsx';
+import { base } from 'utilities';
 
 var Route = ReactRouter.Route;
 var NotFoundRoute = ReactRouter.NotFoundRoute;
@@ -41,10 +45,26 @@ var RouteHandler = ReactRouter.RouteHandler;
 React.initializeTouchEvents(true);
 
 var App = React.createClass({
+    getInitialState: function() {
+        return {};
+    },
+    componentDidMount: function() {
+        AlertTransfer.on('show', (alert) => {
+            this.setState({
+                Alert: base.extend(alert, {show: true})
+            });
+        });
+        AlertTransfer.on('hide', () => {
+            this.setState({
+                Alert: {show: false}
+            });
+        });
+    },
     render: function() {
         return (
             <div className="app">
                 <RouteHandler/>
+                <Alert {...this.state.Alert}></Alert>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import fetch from 'whatwg-fetch';
-import { createFormData } from '../common.jsx';
+import { createFormData, encodeParams } from '../common.jsx';
 import { Promise } from 'es6-promise';
 
 function login(phone, code) {
@@ -53,4 +53,23 @@ function getDefaultAddress() {
         });
 }
 
-export { login, isLogin, getMyAddresses, getDefaultAddress };
+function saveAddress(city, district, detailAddress, contact, contactPhone) {
+    return window.fetch('/account/my/address/', {
+        method: 'post',
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        },
+        body: encodeParams({
+            token: localStorage.getItem('token'),
+            city: city,
+            district: district,
+            detail_address: detailAddress,
+            contact: contact,
+            contact_phone: contactPhone
+        })
+    }).then((result) => {
+        result.json();
+    });
+}
+
+export { login, isLogin, getMyAddresses, getDefaultAddress, saveAddress };

@@ -8,6 +8,7 @@ import Radio from '../../components/Radio.jsx';
 import { dateHelper } from 'utilities';
 import ReactRouter from 'react-router';
 import { getMyAddresses, getDefaultAddress } from '../../services/user.jsx';
+import Tap from '../../components/Tap.jsx';
 
 var Appointment3 = React.createClass({
     mixins: [ ReactRouter.State ],
@@ -20,6 +21,9 @@ var Appointment3 = React.createClass({
             ret.setHours(24 - ret.getHours() + 8);
         }
         return ret;
+    },
+    onModifyTime: function() {
+        HashLocation.push('/appointment-time?time=' + this.state.params.suggestTime.getTime());
     },
     getInitialState: function() {
         var time = localStorage.getItem('appointment3-suggest_time');
@@ -49,12 +53,14 @@ var Appointment3 = React.createClass({
                     <Title>时间和地点</Title>
                     <p>
                         建议预约时间：
-                        <a onTouchEnd={() => HashLocation.push('/appointment-time?time=' + this.state.params.suggestTime.getTime())}>修改预约时间</a>
+                        <Tap onTap={this.onModifyTime}>
+                            <a>修改预约时间</a>
+                        </Tap>
                     </p>
                     <p>{dateHelper.format(this.state.params.suggestTime, 'yyyy-MM-dd HH:mm')}</p>
                     <p>
                         上门服务地址：
-                        <a onTouchEnd={() => HashLocation.push('/appointment-address')}>选择服务地址</a>
+                        <a onTouchEnd={() => HashLocation.push('/select-address')}>选择服务地址</a>
                     </p>
                     <div className="addresses">
                         {(() => {
@@ -73,7 +79,7 @@ var Appointment3 = React.createClass({
                         })()}
                     </div>
                     <div className="remarks">
-                        预约备注：<br />
+                        预约备注：
                         <textarea className="textarea"></textarea>
                     </div>
                 </div>

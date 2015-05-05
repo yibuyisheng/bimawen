@@ -9,6 +9,8 @@ var Select = React.createClass({
             <select className={classes}
                 value={this.props.value}
                 defaultValue={this.props.defaultValue}
+                ref={this.props.ref}
+                onChange={this.props.onChange}
                 style={{height:'30px'}}>
                 {this.props.children}
             </select>

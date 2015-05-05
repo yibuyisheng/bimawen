@@ -35,10 +35,15 @@ function getModels(seriesId) {
 }
 
 /**
- * 全国地址
+ * 全国地址简称
  */
 function getAddresses() {
     return window.fetch('/account/query/province/')
+        .then((result) => result.json());
+}
+
+function getRegions() {
+    return window.fetch('/account/query/city/')
         .then((result) => result.json());
 }
 
@@ -64,4 +69,4 @@ function addCar(carModelId, abbreviation, licensePlate, carInfo, isDefault) {
         });
 }
 
-export { getMyCars, getAllCarBrand, getSeries, getModels, getAddresses, addCar };
+export { getMyCars, getAllCarBrand, getSeries, getModels, getAddresses, addCar, getRegions };
