@@ -13,12 +13,10 @@ import { urlHelper, base } from 'utilities';
 var SelectModel = React.createClass({
     mixins: [ ReactRouter.State ],
     onSelect: function(model) {
-        var params = this.getQuery();
-        var url = urlHelper.buildUrl('/user-center/add-car', base.extend(params, {
-            model: model.id,
-            model_name: model.model_name
-        }));
-        HashLocation.replace(url);
+        localStorage.setItem('add-car-model', model.id);
+        localStorage.setItem('add-car-model_name', model.model_name);
+
+        HashLocation.pop();
     },
     getInitialState: function() {
         return {};
@@ -43,7 +41,7 @@ var SelectModel = React.createClass({
                 <div className="content">
                     <Title>选择车系</Title>
                     {models.map((m) => {
-                        (
+                        return (
                             <Tap onTap={() => this.onSelect(m)}>
                                 <p>
                                     {m.model_name}

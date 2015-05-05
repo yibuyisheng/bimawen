@@ -31,4 +31,26 @@ function isLogin() {
     });
 }
 
-export { login, isLogin };
+function getMyAddresses() {
+    return window.fetch('/account/my/address/list/?token=' + localStorage.getItem('token'))
+        .then((result) => result.json())
+        .then((json) => {
+            if (json.status != 200) {
+                throw new Error(json.message);
+            }
+            return json.address_list;
+        });
+}
+
+function getDefaultAddress() {
+    return window.fetch('/account/my/address/default/?token=' + localStorage.getItem('token'))
+        .then((result) => result.json())
+        .then((json) => {
+            if (json.status != 200) {
+                throw new Error(json.message);
+            }
+            return json.address;
+        });
+}
+
+export { login, isLogin, getMyAddresses, getDefaultAddress };

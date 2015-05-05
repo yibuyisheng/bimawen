@@ -13,12 +13,10 @@ import { urlHelper, base } from 'utilities';
 var SelectSeries = React.createClass({
     mixins: [ ReactRouter.State ],
     onSelect: function(s) {
-        var originParams = this.getQuery();
-        var url = urlHelper.buildUrl('/user-center/add-car', base.extend(originParams, {
-            series: s.id,
-            series_name: s.series_name
-        }));
-        HashLocation.replace(url);
+        localStorage.setItem('add-car-series', s.id);
+        localStorage.setItem('add-car-series_name', s.series_name);
+
+        HashLocation.pop();
     },
     componentDidMount: function() {
         getSeries(this.getQuery().brand)

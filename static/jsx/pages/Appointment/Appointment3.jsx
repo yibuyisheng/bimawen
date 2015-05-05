@@ -5,8 +5,35 @@ import Title from '../../components/Title.jsx';
 import Button from '../../components/Button.jsx';
 import { HashLocation } from 'react-router';
 import Radio from '../../components/Radio.jsx';
+import { dateHelper } from 'utilities';
+import ReactRouter from 'react-router';
+import { getMyAddresses, getDefaultAddress } from '../../services/user.jsx';
 
 var Appointment3 = React.createClass({
+    mixins: [ ReactRouter.State ],
+    _getSuggestTime: function() {
+        var ret = new Date();
+        ret.setHours(ret.getHours() + 24);
+        if (ret.getHours() < 8) {
+            ret.setHours(8 - ret.getHours());
+        } else if (ret.getHours() > 22) {
+            ret.setHours(24 - ret.getHours() + 8);
+        }
+        return ret;
+    },
+    getInitialState: function() {
+        var time = localStorage.getItem('appointment3-suggest_time');
+        time = time ? new Date(parseInt(time)) : this._getSuggestTime();
+        return {
+            params: {
+                suggestTime: time
+            }
+        };
+    },
+    componentDidMount: function() {
+        getDefaultAddress()
+            .then((defaultAddress) => this.setState({defaultAddress: defaultAddress}));
+    },
     render: function () {
         var leftButton = {
             className: 'ion-chevron-left',
@@ -14,6 +41,7 @@ var Appointment3 = React.createClass({
                 HashLocation.pop();
             }
         };
+        var defaultAddress = this.state && this.state.defaultAddress ? this.state.defaultAddress : null;
         return (
             <div className="appointment-3">
                 <Header leftButton={leftButton}>预约</Header>
@@ -21,46 +49,32 @@ var Appointment3 = React.createClass({
                     <Title>时间和地点</Title>
                     <p>
                         建议预约时间：
-                        <a onTouchEnd={() => HashLocation.push('/appointment-time')}>修改预约时间</a>
+                        <a onTouchEnd={() => HashLocation.push('/appointment-time?time=' + this.state.params.suggestTime.getTime())}>修改预约时间</a>
                     </p>
-                    <p>2015-3-15 18:30</p>
+                    <p>{dateHelper.format(this.state.params.suggestTime, 'yyyy-MM-dd HH:mm')}</p>
                     <p>
                         上门服务地址：
-                        <a onTouchEnd={() => HashLocation.push('/appointment-address')}>编辑地址信息</a>
+                        <a onTouchEnd={() => HashLocation.push('/appointment-address')}>选择服务地址</a>
                     </p>
                     <div className="addresses">
-                        <p>
-                            <Radio />
-                            <span>
-                                普陀区棕榈路212弄36号303室<br />
-                                顾刚 15001750001
-                            </span>
-                            <i className="ion-compose"></i>
-                        </p>
-                        <p>
-                            <Radio />
-                            <span>
-                                普陀区棕榈路212弄36号303室<br />
-                                顾刚 15001750001
-                            </span>
-                            <i className="ion-compose"></i>
-                        </p>
-                        <p>
-                            <Radio />
-                            <span>
-                                普陀区棕榈路212弄36号303室<br />
-                                顾刚 15001750001
-                            </span>
-                            <i className="ion-compose"></i>
-                        </p>
-                        <p>
-                            <Radio />
-                            <span>
-                                普陀区棕榈路212弄36号303室<br />
-                                顾刚 15001750001
-                            </span>
-                            <i className="ion-compose"></i>
-                        </p>
+                        {(() => {
+                            if (defaultAddress) {
+                                return (
+                                    <p>
+                                        <Radio checked={true} />
+                                        <span>
+                                            {defaultAddress.city + defaultAddress.district + defaultAddress.detail_address}<br />
+                                            {defaultAddress.contact + ' ' + defaultAddress.contact_phone}
+                                        </span>
+                                        <i className="ion-compose"></i>
+                                    </p>
+                                );
+                            }
+                        })()}
+                    </div>
+                    <div className="remarks">
+                        预约备注：<br />
+                        <textarea className="textarea"></textarea>
                     </div>
                 </div>
                 <Button className="big-button" onTap={() => HashLocation.push('/appointment-success')}>提交预约</Button>

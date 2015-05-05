@@ -1,4 +1,5 @@
 import Hammer from 'hammerjs';
+import { urlHelper } from 'utilities';
 
 function createFormData(data) {
     var fd = new FormData();
@@ -8,9 +9,13 @@ function createFormData(data) {
     return fd;
 }
 
+function encodeParams(params) {
+    return urlHelper.buildUrl('', params).replace(/^\?/, '');
+}
+
 function bindTap(element, callback) {
     var hm = new Hammer(element);
     hm.on('tap', callback);
 }
 
-export { createFormData, bindTap };
+export { createFormData, bindTap, encodeParams };

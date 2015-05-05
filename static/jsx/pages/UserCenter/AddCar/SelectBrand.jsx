@@ -13,12 +13,11 @@ import ReactRouter from 'react-router';
 var SelectBrand = React.createClass({
     mixins: [ ReactRouter.State ],
     onSelect: function(brand) {
-        var originParams = this.getQuery();
-        var url = urlHelper.buildUrl('/user-center/add-car', base.extend(originParams, {
-            brand: brand.id,
-            brand_name: brand.brand_name
-        }));
-        HashLocation.replace(url);
+        // 将选好的数据存到 localStorage 里面
+        localStorage.setItem('add-car-brand', brand.id);
+        localStorage.setItem('add-car-brand_name', brand.brand_name);
+
+        HashLocation.pop();
     },
     componentDidMount: function() {
         getAllCarBrand()

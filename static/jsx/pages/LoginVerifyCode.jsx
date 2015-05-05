@@ -18,7 +18,6 @@ var LoginVerifyCode = React.createClass({
         send(this.refs.mobile.getDOMNode().value)
             .then(timer)
             .catch((error) => {
-                debugger
                 console.log(error);
             });
 

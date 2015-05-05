@@ -9,6 +9,7 @@ import addons from 'react-addons';
 import ReactRouter from 'react-router';
 import { urlHelper } from 'utilities';
 import Tap from '../../../components/Tap.jsx';
+import { getAddresses, addCar } from '../../../services/car.jsx';
 
 var Index = React.createClass({
     mixins: [ ReactRouter.State ],
@@ -19,24 +20,53 @@ var Index = React.createClass({
         }
 
         var toUrl = btnObj.to;
-        toUrl = urlHelper.buildUrl(toUrl, this.getQuery());
+        toUrl = urlHelper.buildUrl(toUrl, this.state.selected);
 
         HashLocation.push(toUrl.replace(/\?$/, ''));
     },
-    onSetDefaultCar: function() {
-        
+    onAddCar: function() {
+        var query = this.state.selected;
+        addCar(
+            query.model,
+            this.refs.abbreviation.getDOMNode().value,
+            this.refs.licensePlate.getDOMNode().value,
+            query.brand_name + ' ' + query.series_name + ' ' + query.model_name,
+            this.state.isDefault
+        ).then(() => {
+            alert('成功')
+            this._clearSelected();
+        }, (error) => alert(error.message));
     },
     getInitialState: function() {
+        var selectButtons = [
+            {status: 'current', text: '选择品牌', to: '/user-center/add-car/select-brand'},
+            {status: 'wait', text: '选择车系', to: '/user-center/add-car/select-series'},
+            {status: 'wait', text: '选择型号', to: '/user-center/add-car/select-model'}
+        ];
+        var selected = {
+            brand: localStorage.getItem('add-car-brand'),
+            brand_name: localStorage.getItem('add-car-brand_name'),
+            series: localStorage.getItem('add-car-series'),
+            series_name: localStorage.getItem('add-car-series_name'),
+            model: localStorage.getItem('add-car-model'),
+            model_name: localStorage.getItem('add-car-model_name')
+        };
+
         return {
-            selectButtons: [
-                {status: 'current', text: '选择品牌', to: '/user-center/add-car/select-brand'},
-                {status: 'wait', text: '选择车系', to: '/user-center/add-car/select-series'},
-                {status: 'wait', text: '选择型号', to: '/user-center/add-car/select-model'}
-            ]
+            selectButtons: selectButtons,
+            selected: selected
         };
     },
+    _clearSelected: function() {
+        localStorage.removeItem('add-car-brand');
+        localStorage.removeItem('add-car-brand_name');
+        localStorage.removeItem('add-car-series');
+        localStorage.removeItem('add-car-series_name');
+        localStorage.removeItem('add-car-model');
+        localStorage.removeItem('add-car-model_name');
+    },
     componentDidMount: function() {
-        var params = this.getQuery();
+        var params = this.state.selected;
         var selectButtons = this.state.selectButtons;
         if (params.brand) {
             selectButtons[0].status = 'ready';
@@ -63,11 +93,15 @@ var Index = React.createClass({
             selectButtons[2].text = params.model_name;
         }
         this.setState({selectButtons: selectButtons});
+
+        // 获取省份简称
+        getAddresses()
+            .then((json) => this.setState({addresses: json}));
     },
     render: function () {
         var selectButtons = this.state.selectButtons;
         var leftButton = {
-            className: 'ion-person',
+            className: 'ion-chevron-left',
             onTap: () => {
                 HashLocation.pop();
             }
@@ -98,23 +132,29 @@ var Index = React.createClass({
                         <i className="ion-chevron-right"></i>
                     </Button>
                     <div className="number">
-                        <Select>
-                            <option>沪</option>
+                        <Select ref="abbreviation">
+                            {_address.call(this)}
                         </Select>
-                        <input type="text" />
+                        <input type="text" ref="licensePlate" />
                     </div>
                     <div className="default-box">
-                        <Tap onTap={this.onSetDefaultCar}>
-                            <i className="ion-ios-checkmark-outline"></i>
+                        <Tap onTap={() => this.setState({isDefault: !this.state.isDefault})}>
+                            <i className={addons.classSet('ion-ios-checkmark-outline', this.state.isDefault ? 'on' : '')}></i>
                             设置为默认车辆
                         </Tap>
                     </div>
                     <div className="space"></div>
-                    <Button className="big-button">添加车辆</Button>
+                    <Button className="big-button" onTap={this.onAddCar}>添加车辆</Button>
                 </div>
                 <Footer></Footer>
             </div>
         );
+
+        function _address() {
+            if (!this.state || !this.state.addresses) return;
+
+            return this.state.addresses.map((address) => (<option value={address.abbreviation}>{address.abbreviation}</option>));
+        }
     }
 });
 

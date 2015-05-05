@@ -7,6 +7,8 @@ var Select = React.createClass({
         var classes = cx('select', this.props.className);
         return (
             <select className={classes}
+                value={this.props.value}
+                defaultValue={this.props.defaultValue}
                 style={{height:'30px'}}>
                 {this.props.children}
             </select>

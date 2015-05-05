@@ -22,6 +22,19 @@
     -webkit-overflow-scrolling: touch;
     overflow: auto;
 }
+.default-box {
+    margin: 10px 25px 0 25px;
+
+    i {
+        margin-right: 4px;
+        font-size: 20px;
+        vertical-align: middle;
+
+        &.on {
+            color: orange;
+        }
+    }
+}
 
 
 @import '@{root-dir}common.less';
@@ -39,6 +52,8 @@
 @import '@{root-dir}pages/Appointment/Appointment2.less';
 @import '@{root-dir}pages/Appointment/Appointment3.less';
 @import '@{root-dir}pages/Appointment/AppointmentSuccess.less';
+@import '@{root-dir}pages/Appointment/SelectAddress.less';
+@import '@{root-dir}pages/Appointment/EditAddress.less';
 @import '@{root-dir}pages/AppointmentTime.less';
 @import '@{root-dir}pages/AppointmentAddress.less';
 @import '@{root-dir}pages/LoginVerifyCode.less';

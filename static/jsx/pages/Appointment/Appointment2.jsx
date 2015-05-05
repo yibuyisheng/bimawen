@@ -7,11 +7,13 @@ import Select from '../../components/Select.jsx';
 import { HashLocation } from 'react-router';
 import { getMyCars } from '../../services/car.jsx';
 import addons from 'react-addons';
+import Tap from '../../components/Tap.jsx';
 
 var Appointment2 = React.createClass({
     nextStep: function () {
         HashLocation.push('/appointment-3');
     },
+    onModify: function() {},
     getInitialState: function() {
         return {};
     },
@@ -19,7 +21,7 @@ var Appointment2 = React.createClass({
         getMyCars()
             .then((cars) => {
                 this.setState({
-                    cars: cars
+                    cars: cars.sort((a, b) => b.is_default - a.is_default)
                 });
             }, (error) => {
                 alert(error.message ? error.message : '未知错误');
@@ -34,16 +36,18 @@ var Appointment2 = React.createClass({
             cars.map((car) => {
                 var carClass = addons.classSet({
                     'car': true,
-                    'selected': !!car.selected
+                    'selected': !!car.is_default
                 });
 
                 return (
                     <div className={carClass}>
                         <section>
-                            <h3>沪C 45H5F</h3>
-                            <p>马自达 CX-5 2014款 2.0L</p>
+                            <h3>{car.license_plate_aleph + car.license_plate}</h3>
+                            <p>{car.car_info}</p>
                         </section>
-                        <i className="ion-ios-compose-outline"></i>
+                        <Tap onTap={this.onModify}>
+                            <i className="ion-ios-compose-outline"></i>
+                        </Tap>
                     </div>
                 );
             })

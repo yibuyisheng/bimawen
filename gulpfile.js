@@ -15,13 +15,16 @@ gulp.task('webserver', function () {
             port: 8000,
             open: 'http://127.0.0.1:8000/dist/main.html',
             proxies: [
-                // {source: '/account/sign/in/', target: remoteHost + 'account/sign/in/'},
                 {source: '/account/send/validate_code/', target: remoteHost + 'account/send/validate_code/'},
                 {source: '/account/sign/in/', target: remoteHost + 'account/sign/in/'},
                 {source: '/account/my/car/', target: remoteHost + 'account/my/car/'},
                 {source: '/account/car/brand/', target: remoteHost + 'account/car/brand/'},
                 {source: '/account/car/series/', target: remoteHost + 'account/car/series/'},
-                {source: '/account/car/models/', target: remoteHost + 'account/car/models/'}
+                {source: '/account/car/models/', target: remoteHost + 'account/car/models/'},
+                {source: '/account/query/province/', target: remoteHost + 'account/query/province/'},
+                {source: '/account/my/car/default/', target: remoteHost + 'account/my/car/default/'},
+                {source: '/account/my/address/list/', target: remoteHost + 'account/my/address/list/'},
+                {source: '/account/my/address/default/', target: remoteHost + 'account/my/address/default/'}
             ]
         }))
         .on('error', handleError);
