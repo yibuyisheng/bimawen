@@ -10,6 +10,11 @@ var AlertTransfer = base.extend({}, eventDealer, {
                 AlertTransfer.trigger('hide');
             }
         });
+    },
+    toast: function(content) {
+        this.trigger('toast', {
+            content: content
+        });
     }
 });
 

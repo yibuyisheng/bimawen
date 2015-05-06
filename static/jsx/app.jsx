@@ -59,6 +59,18 @@ var App = React.createClass({
                 Alert: {show: false}
             });
         });
+        AlertTransfer.on('toast', (alert) => {
+            this.setState({
+                Alert: base.extend(alert, {
+                    show: true,
+                    hideTitle: true,
+                    hideButton: true
+                })
+            });
+            setTimeout(() => {
+                AlertTransfer.trigger('hide');
+            }, 1000);
+        });
     },
     render: function() {
         return (

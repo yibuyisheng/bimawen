@@ -24,7 +24,7 @@ var EditAddress = React.createClass({
         send(this.refs.mobile.getDOMNode().value)
             .then(timer)
             .catch((error) => {
-                console.log(error);
+                AlertTransfer.show(error.message, '错误');
             });
 
         var self = this;
@@ -62,14 +62,13 @@ var EditAddress = React.createClass({
         });
     },
     onSave: function() {
-        AlertTransfer.show('title', 'content');
-        //saveAddress(
-        //    this.refs.city.getDOMNode().value,
-        //    this.refs.region.getDOMNode().value,
-        //    this.refs.detailAddress.getDOMNode().value,
-        //    this.refs.contact.getDOMNode().value,
-        //    this.refs.mobile.getDOMNode().value
-        //).then(() => alert('成功'));
+        saveAddress(
+            this.refs.city.getDOMNode().value,
+            this.refs.region.getDOMNode().value,
+            this.refs.detailAddress.getDOMNode().value,
+            this.refs.contact.getDOMNode().value,
+            this.refs.mobile.getDOMNode().value
+        ).then(() => alert('成功'));
     },
     _renderCities: function() {
         if (!this.regions) return;

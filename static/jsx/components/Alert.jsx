@@ -14,9 +14,9 @@ var Alert = React.createClass({
             <div className="alert-box" style={style}>
                 <div className="cover"></div>
                 <div className="content">
-                    <h3>{this.props.title}</h3>
+                    <h3 style={{display: this.props.hideTitle ? 'none' : ''}}>{this.props.title}</h3>
                     <p>{this.props.content}</p>
-                    <div className="opt">
+                    <div className="opt" style={{display: this.props.hideButton ? 'none' : ''}}>
                         <Tap onTap={this.onOk}>
                             <button>确定</button>
                         </Tap>
