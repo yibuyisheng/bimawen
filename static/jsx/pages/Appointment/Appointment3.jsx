@@ -9,6 +9,7 @@ import { dateHelper } from 'utilities';
 import ReactRouter from 'react-router';
 import { getMyAddresses, getDefaultAddress } from '../../services/user.jsx';
 import Tap from '../../components/Tap.jsx';
+import { urlHelper } from 'utilities';
 
 var Appointment3 = React.createClass({
     mixins: [ ReactRouter.State ],
@@ -25,18 +26,41 @@ var Appointment3 = React.createClass({
     onModifyTime: function() {
         HashLocation.push('/appointment-time?time=' + this.state.params.suggestTime.getTime());
     },
+    onModifyAddress: function() {
+        HashLocation.push(urlHelper.buildUrl('edit-address', {address: JSON.stringify(this.state.defaultAddress)}));
+    },
+    onSubmitAppointment: function() {
+        if (!this.state.defaultAddress) {
+            return AlertTransfer.error('请选择地址');
+        }
+        localStorage.setItem('appointment-3', JSON.stringify({
+            time: this.state.params.suggestTime,
+            address: this.state.defaultAddress,
+            remarks: this.refs.remarks.getDOMNode().value
+        }));
+        HashLocation.push('/appointment-success');
+    },
     getInitialState: function() {
         var time = localStorage.getItem('appointment3-suggest_time');
         time = time ? new Date(parseInt(time)) : this._getSuggestTime();
+
+        var selectedAddress = localStorage.getItem('select-address');
+        localStorage.removeItem('select-address');
+        selectedAddress = selectedAddress ? JSON.parse(selectedAddress) : null;
+        if (!selectedAddress) {
+            getDefaultAddress()
+                .then((defaultAddress) => this.setState({defaultAddress: defaultAddress}));
+        }
+
         return {
             params: {
                 suggestTime: time
-            }
+            },
+            defaultAddress: selectedAddress
         };
     },
     componentDidMount: function() {
-        getDefaultAddress()
-            .then((defaultAddress) => this.setState({defaultAddress: defaultAddress}));
+
     },
     render: function () {
         var leftButton = {
@@ -72,7 +96,9 @@ var Appointment3 = React.createClass({
                                             {defaultAddress.city + defaultAddress.district + defaultAddress.detail_address}<br />
                                             {defaultAddress.contact + ' ' + defaultAddress.contact_phone}
                                         </span>
-                                        <i className="ion-compose"></i>
+                                        <Tap onTap={this.onModifyAddress}>
+                                            <i className="ion-compose"></i>
+                                        </Tap>
                                     </p>
                                 );
                             }
@@ -80,10 +106,10 @@ var Appointment3 = React.createClass({
                     </div>
                     <div className="remarks">
                         预约备注：
-                        <textarea className="textarea"></textarea>
+                        <textarea className="textarea" ref="remarks"></textarea>
                     </div>
                 </div>
-                <Button className="big-button" onTap={() => HashLocation.push('/appointment-success')}>提交预约</Button>
+                <Button className="big-button" onTap={() => this.onSubmitAppointment()}>提交预约</Button>
                 <Footer></Footer>
             </div>
         );

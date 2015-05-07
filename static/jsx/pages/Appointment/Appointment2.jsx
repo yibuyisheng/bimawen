@@ -8,24 +8,42 @@ import { HashLocation } from 'react-router';
 import { getMyCars } from '../../services/car.jsx';
 import addons from 'react-addons';
 import Tap from '../../components/Tap.jsx';
+import AlertTransfer from '../../transfers/AlertTransfer.jsx';
 
 var Appointment2 = React.createClass({
     nextStep: function () {
+        var selectedCar = this.state.cars.filter((car) => {
+            return car.selected;
+        });
+        selectedCar = selectedCar && selectedCar.length ? selectedCar[0] : null;
+        if (!selectedCar) {
+            return AlertTransfer.show('请选择车辆', '错误');
+        }
+
+        localStorage.setItem('appointment-2', JSON.stringify(selectedCar));
         HashLocation.push('/appointment-3');
     },
     onModify: function() {},
-    getInitialState: function() {
-        return {};
+    onSelectChange: function(car) {
+        var cars = this.state.cars;
+        cars.forEach((item) => {
+            item.selected = item === car;
+        });
+        this.setState({cars: cars});
     },
-    componentDidMount: function() {
+    getInitialState: function() {
         getMyCars()
             .then((cars) => {
                 this.setState({
-                    cars: cars.sort((a, b) => b.is_default - a.is_default)
+                    cars: cars.sort((a, b) => b.is_default - a.is_default).map((car) => {
+                        car.selected = car.is_default;
+                        return car;
+                    })
                 });
             }, (error) => {
-                alert(error.message ? error.message : '未知错误');
+                AlertTransfer.show(error.message ? error.message : '未知错误', '错误');
             });
+        return {};
     },
     _renderCar: function(cars) {
         if (!cars || !cars.length) {
@@ -35,20 +53,22 @@ var Appointment2 = React.createClass({
         return (
             cars.map((car) => {
                 var carClass = addons.classSet({
-                    'car': true,
-                    'selected': !!car.is_default
+                    car: true,
+                    selected: car.selected
                 });
 
                 return (
-                    <div className={carClass}>
-                        <section>
-                            <h3>{car.license_plate_aleph + car.license_plate}</h3>
-                            <p>{car.car_info}</p>
-                        </section>
-                        <Tap onTap={this.onModify}>
-                            <i className="ion-ios-compose-outline"></i>
-                        </Tap>
-                    </div>
+                    <Tap onTap={() => this.onSelectChange(car)}>
+                        <div className={carClass}>
+                            <section>
+                                <h3>{car.license_plate_aleph + car.license_plate}</h3>
+                                <p>{car.car_info}</p>
+                            </section>
+                            <Tap onTap={this.onModify}>
+                                <i className="ion-ios-compose-outline"></i>
+                            </Tap>
+                        </div>
+                    </Tap>
                 );
             })
         );

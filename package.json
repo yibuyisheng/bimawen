@@ -27,12 +27,14 @@
   "dependencies": {
     "es6-promise": "^2.1.1",
     "hammerjs": "^2.0.4",
+    "promise": "git://github.com/yibuyisheng/promise",
     "proxy": "git://github.com/yibuyisheng/proxy",
     "react": "^0.12.2",
     "react-addons": "^0.9.1-deprecated",
     "react-router": "^0.12.4",
     "reflux": "^0.2.7",
     "utilities": "git://github.com/yibuyisheng/utilities",
-    "whatwg-fetch": "^0.7.0"
+    "whatwg-fetch": "^0.7.0",
+    "xhr": "^2.0.1"
   }
 }

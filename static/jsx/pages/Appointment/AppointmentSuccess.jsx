@@ -4,8 +4,20 @@ import Footer from '../../components/Footer.jsx';
 import Title from '../../components/Title.jsx';
 import Button from '../../components/Button.jsx';
 import { HashLocation } from 'react-router';
+import { dateHelper } from 'utilities';
 
 var AppointmentSuccess = React.createClass({
+    getInitialState: function() {
+        var car = JSON.parse(localStorage.getItem('appointment-2'));
+
+        var a3 = JSON.parse(localStorage.getItem('appointment-3'));
+        return {
+            car: car,
+            time: new Date(a3.time),
+            address: a3.address,
+            remarks: a3.remarks
+        };
+    },
     render: function() {
         var leftButton = {
             className: 'ion-android-home',
@@ -20,27 +32,27 @@ var AppointmentSuccess = React.createClass({
                     <Title>预约成功</Title>
                     <div>
                         <label>车牌号码</label>
-                        <p>沪B28585</p>
+                        <p>{this.state.car.license_plate_aleph}</p>
                     </div>
                     <div>
                         <label>车辆信息</label>
-                        <p>大众朗逸1.6L 2014版</p>
+                        <p>{this.state.car.license_plate}</p>
                     </div>
                     <div>
                         <label>预约时间</label>
-                        <p>2015-3-15 16:30</p>
+                        <p>{dateHelper.format(this.state.time, 'yyyy-MM-dd HH:mm')}</p>
                     </div>
                     <div>
                         <label>上门地址</label>
-                        <p>上海市普陀区棕榈路212弄36号303室</p>
+                        <p>{this.state.address.city + this.state.address.district + this.state.address.detail_address}</p>
                     </div>
                     <div>
                         <label>联系人</label>
-                        <p>顾刚</p>
+                        <p>{this.state.address.contact}</p>
                     </div>
                     <div>
                         <label>联系电话</label>
-                        <p>15001750001</p>
+                        <p>{this.state.address.contact_phone}</p>
                     </div>
                 </div>
                 <Button className="big-button" onTap={() => HashLocation.push('/appointment-1')}>返回首页</Button>

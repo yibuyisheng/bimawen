@@ -1,18 +1,15 @@
 import React from 'react';
 import addons from 'react-addons';
+import Tap from './Tap.jsx';
 
 var Radio = React.createClass({
-    getInitialState: function () {
-        return {
-            checked: this.props.checked
-        };
-    },
     render: function () {
         var cx = addons.classSet;
-        var classes = cx(this.state.checked ? 'ion-ios-circle-filled' : 'ion-ios-circle-outline');
+        var classes = cx(this.props.checked ? 'ion-ios-circle-filled' : 'ion-ios-circle-outline');
         return (
-            <radio className={classes}
-                onTouchEnd={() => this.setState({checked: !this.state.checked})} />
+            <Tap onTap={() => {this.props.onChange && this.props.onChange()}}>
+                <radio className={classes} />
+            </Tap>
         );
     }
 });

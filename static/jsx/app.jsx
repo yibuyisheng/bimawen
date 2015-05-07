@@ -7,6 +7,8 @@ import Appointment3 from './pages/Appointment/Appointment3.jsx';
 import AppointmentSuccess from './pages/Appointment/AppointmentSuccess.jsx';
 import SelectAddress from './pages/Appointment/SelectAddress.jsx';
 import EditAddress from './pages/Appointment/EditAddress.jsx';
+import ChooseSuit from './pages/Appointment/ChooseSuit/index.jsx';
+import SelectOil from './pages/Appointment/ChooseSuit/SelectOil.jsx';
 
 import AppointmentTime from './pages/AppointmentTime.jsx';
 import AppointmentAddress from './pages/AppointmentAddress.jsx';
@@ -86,6 +88,12 @@ var routes = (
     <Route handler={App} path="/">
         <Route handler={Appointment1} path="appointment-1" />
         <Route handler={Appointment2} path="appointment-2" />
+        <Route path="choose-suit">
+            <Route handler={ChooseSuit} path="index"></Route>
+            <Route handler={SelectOil} path="select-oil"></Route>
+            <DefaultRoute handler={ChooseSuit} />
+        </Route>
+        <Route handler={ChooseSuit} path="choose-suit" />
         <Route handler={Appointment3} path="appointment-3" />
         <Route handler={AppointmentSuccess} path="appointment-success" />
         <Route handler={SelectAddress} path="select-address" />

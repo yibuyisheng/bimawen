@@ -16,6 +16,7 @@ import { getRegions } from '../../services/car.jsx';
 import AlertTransfer from '../../transfers/AlertTransfer.jsx';
 
 var EditAddress = React.createClass({
+    mixins: [ ReactRouter.State ],
     sendCode: function() {
         if (this.state.verifyCodeButton.counter) {
             return;
@@ -67,11 +68,17 @@ var EditAddress = React.createClass({
             this.refs.region.getDOMNode().value,
             this.refs.detailAddress.getDOMNode().value,
             this.refs.contact.getDOMNode().value,
-            this.refs.mobile.getDOMNode().value
-        ).then(() => alert('成功'));
+            this.refs.mobile.getDOMNode().value,
+            this.refs.code.getDOMNode().value,
+            this.state.isDefault ? 1 : 0
+        )
+            .then(() => HashLocation.pop(), (error) => {
+                AlertTransfer.error(error.message);
+            });
     },
     _renderCities: function() {
         if (!this.regions) return;
+
         return this.regions.map((region) => {
             return (<option>{region.name}</option>);
         });
@@ -85,6 +92,7 @@ var EditAddress = React.createClass({
             }
         }
         if (!regions) return;
+
         return regions.map((region) => {
             return (<option>{region}</option>);
         });
@@ -94,14 +102,21 @@ var EditAddress = React.createClass({
             .then((json) => {
                 this.regions = json;
                 this.setState({
-                    currentCityName: json[0].name
+                    currentCityName: this.state.currentCityName ? this.state.currentCityName : json[0].name
                 });
             });
+
+        var address = this.getQuery().address;
+        address = address ? JSON.parse(address) : null;
+        var isDefault = address && address.add_status;
         return {
             verifyCodeButton: {
                 text: '获取验证码',
                 counter: null
-            }
+            },
+            address: address,
+            isDefault: isDefault,
+            currentCityName: address ? address.city : null
         };
     },
     render: function() {
@@ -113,8 +128,9 @@ var EditAddress = React.createClass({
         };
         var verifyCodeButtonClass = addons.classSet({
             'normal-button': true,
-            'disabled': !!this.state.verifyCodeButton.counter
+            disabled: !!this.state.verifyCodeButton.counter
         });
+        var address = this.state.address ? this.state.address : {};
 
         return (
             <div className="edit-address">
@@ -123,26 +139,26 @@ var EditAddress = React.createClass({
                     <Title>编辑地址</Title>
                     <div className="main">
                         <div>
-                            <Select ref="city" onChange={this.onCityChange}>
+                            <Select ref="city" onChange={this.onCityChange} value={this.state.address.city}>
                                 {this._renderCities()}
                             </Select>
-                            <Select ref="region">
+                            <Select ref="region" value={this.state.address.district}>
                                 {this._renderRegions(this.state.currentCityName)}
                             </Select>
                         </div>
                         <div>
-                            <textarea ref="detailAddress" placeholder="详细地址"></textarea>
+                            <textarea ref="detailAddress" placeholder="详细地址" defaultValue={address.detail_address}></textarea>
                         </div>
                         <div>
                             <label>联系人</label>
-                            <input type="text" ref="contact" />
+                            <input type="text" ref="contact" defaultValue={address.contact} />
                         </div>
                         <div>
                             <label>联系电话</label>
-                            <input type="text" ref="mobile" />
+                            <input type="text" ref="mobile" defaultValue={address.contact_phone} />
                         </div>
                         <div>
-                            <input type="text" />
+                            <input type="text" ref="code" />
                             <Button className={verifyCodeButtonClass} onTap={this.sendCode}>
                                 {this.state.verifyCodeButton.text}
                             </Button>

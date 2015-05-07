@@ -18,6 +18,7 @@ let Appointment1 = React.createClass({
     goAppointment: function() {
         isLogin()
             .then(() => {
+                localStorage.setItem('appointment-1', JSON.stringify({type: this.state.showSmallUpkeep ? 'small' : 'big'}));
                 HashLocation.push('appointment-2');
             }, () => {
                 HashLocation.push('/login-verify-code');

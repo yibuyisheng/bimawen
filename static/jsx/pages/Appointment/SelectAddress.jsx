@@ -9,14 +9,41 @@ import { dateHelper } from 'utilities';
 import ReactRouter from 'react-router';
 import { getMyAddresses } from '../../services/user.jsx';
 import Tap from '../../components/Tap.jsx';
+import addons from 'react-addons';
+import { urlHelper } from 'utilities';
 
 var SelectAddress = React.createClass({
     onAddAddress: function() {
         HashLocation.push('edit-address');
     },
+    onModifyAddress: function(address) {
+        HashLocation.push(urlHelper.buildUrl('edit-address', {address: JSON.stringify(address)}));
+    },
+    onSelectChange: function(address) {
+        var addresses = this.state.addresses;
+        addresses.forEach((item) => {
+            item.selected = item === address;
+        });
+        this.setState({addresses: addresses});
+    },
+    onConfirm: function() {
+        var selectedAddress = this.state.addresses.filter((address) => {
+            return address.selected;
+        });
+        selectedAddress = selectedAddress && selectedAddress.length ? selectedAddress[0] : null;
+        if (!selectedAddress) {
+            return AlertTransfer.error('请选择地址');
+        }
+
+        localStorage.setItem('select-address', JSON.stringify(selectedAddress));
+        HashLocation.pop();
+    },
     getInitialState: function() {
         getMyAddresses()
             .then((addresses) => {
+                addresses.map(function(address) {
+                    address.selected = address.add_status;
+                });
                 this.setState({addresses: addresses});
             });
         return {};
@@ -36,14 +63,16 @@ var SelectAddress = React.createClass({
                     <Title>预约地址</Title>
                     <div className="main">
                         {addresses.map((address) => {
-                            (
-                                <p>
-                                    <Radio />
+                            return (
+                                <p className={addons.classSet({selected: address.selected})}>
+                                    <Radio checked={address.selected} onChange={() => this.onSelectChange(address)}/>
                                     <span>
                                         {address.city + address.district + address.detail_address}<br />
                                         {address.contact + ' ' + address.contact_phone}
                                     </span>
-                                    <i className="ion-compose"></i>
+                                    <Tap onTap={() => this.onModifyAddress(address)}>
+                                        <i className="ion-compose"></i>
+                                    </Tap>
                                 </p>
                             )
                         })}
@@ -52,7 +81,7 @@ var SelectAddress = React.createClass({
                         </div>
                     </div>
                 </div>
-                <Button className="big-button">选择预约地址</Button>
+                <Button className="big-button" onTap={this.onConfirm}>选择预约地址</Button>
                 <Footer></Footer>
             </div>
         );

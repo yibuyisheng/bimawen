@@ -46,18 +46,18 @@ function getDefaultAddress() {
     return window.fetch('/account/my/address/default/?token=' + localStorage.getItem('token'))
         .then((result) => result.json())
         .then((json) => {
-            if (json.status != 200) {
-                throw new Error(json.message);
+            if (json && json.length) {
+                return json[0];
             }
-            return json.address;
+            return null;
         });
 }
 
-function saveAddress(city, district, detailAddress, contact, contactPhone) {
-    return window.fetch('/account/my/address/', {
+function saveAddress(city, district, detailAddress, contact, contactPhone, code, isDefault) {
+    return window.fetch('http://121.40.167.199/account/my/address/', {
         method: 'post',
         headers: {
-            'Content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/x-www-form-urlencoded'
         },
         body: encodeParams({
             token: localStorage.getItem('token'),
@@ -65,10 +65,15 @@ function saveAddress(city, district, detailAddress, contact, contactPhone) {
             district: district,
             detail_address: detailAddress,
             contact: contact,
-            contact_phone: contactPhone
+            contact_phone: contactPhone,
+            code: code,
+            is_default: isDefault
         })
     }).then((result) => {
-        result.json();
+        if (result.status !== 200) {
+            return result.text().then((text) => {throw new Error(text)});
+        }
+        return result.text();
     });
 }
 

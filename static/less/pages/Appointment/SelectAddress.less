@@ -5,5 +5,28 @@
         text-align: center;
         color: @blue;
         font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .main {
+        &>p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 20px;
+            line-height: 24px;
+
+            &.selected {
+                font-weight: bold;
+            }
+
+            &>span {
+                flex: 1;
+            }
+
+            i {
+                font-size: 28px;
+            }
+        }
     }
 }

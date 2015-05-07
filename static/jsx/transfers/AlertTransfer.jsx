@@ -11,6 +11,9 @@ var AlertTransfer = base.extend({}, eventDealer, {
             }
         });
     },
+    error: function(content) {
+        this.show(content, '错误');
+    },
     toast: function(content) {
         this.trigger('toast', {
             content: content
