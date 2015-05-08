@@ -9,6 +9,9 @@ import SelectAddress from './pages/Appointment/SelectAddress.jsx';
 import EditAddress from './pages/Appointment/EditAddress.jsx';
 import ChooseSuit from './pages/Appointment/ChooseSuit/index.jsx';
 import SelectOil from './pages/Appointment/ChooseSuit/SelectOil.jsx';
+import SelectFilter from './pages/Appointment/ChooseSuit/SelectFilter.jsx';
+import SelectAirFilter from './pages/Appointment/ChooseSuit/SelectAirFilter.jsx';
+import SelectAirConditionFilter from './pages/Appointment/ChooseSuit/SelectAirConditionFilter.jsx';
 
 import AppointmentTime from './pages/AppointmentTime.jsx';
 import AppointmentAddress from './pages/AppointmentAddress.jsx';
@@ -91,6 +94,9 @@ var routes = (
         <Route path="choose-suit">
             <Route handler={ChooseSuit} path="index"></Route>
             <Route handler={SelectOil} path="select-oil"></Route>
+            <Route handler={SelectFilter} path="select-filter"></Route>
+            <Route handler={SelectAirFilter} path="select-air-filter"></Route>
+            <Route handler={SelectAirConditionFilter} path="select-air-condition-filter"></Route>
             <DefaultRoute handler={ChooseSuit} />
         </Route>
         <Route handler={ChooseSuit} path="choose-suit" />
@@ -133,6 +139,6 @@ var routes = (
     </Route>
 );
 
-ReactRouter.run(routes, function (Handler) {
+ReactRouter.run(routes, function(Handler) {
     React.render(<Handler/>, document.body);
 });

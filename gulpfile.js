@@ -6,8 +6,15 @@ var sourcemaps = require('gulp-sourcemaps');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer-core');
 var webserver = require('gulp-webserver');
+var killProcess = require('kill-process');
 
-gulp.task('webserver', function () {
+/**
+ * 清理端口，保证 8000 端口未被占用
+ * */
+//gulp.task('clear-port', function(done) {
+//    killProcess(8000).then(done, done);
+//});
+gulp.task('webserver', function() {
     var remoteHost = 'http://121.40.167.199/';
     return gulp.src('static')
         .pipe(webserver({
@@ -26,7 +33,8 @@ gulp.task('webserver', function () {
                 {source: '/account/my/address/list/', target: remoteHost + 'account/my/address/list/'},
                 {source: '/account/my/address/default/', target: remoteHost + 'account/my/address/default/'},
                 {source: '/account/query/city/', target: remoteHost + 'account/query/city/'},
-                {source: '/account/my/address/', target: remoteHost + 'account/my/address/'}
+                {source: '/account/my/address/', target: remoteHost + 'account/my/address/'},
+                {source: '/account/query/item/type/', target: remoteHost + 'account/query/item/type/'}
             ]
         }))
         .on('error', handleError);

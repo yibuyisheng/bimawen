@@ -7,44 +7,64 @@ import Reflux from 'reflux';
 import { HashLocation } from 'react-router';
 import { isLogin } from '../../../services/user.jsx';
 import { bindTap } from '../../../common.jsx';
+import { getMaintenanceItems } from '../../../services/car.jsx';
+import Tap from '../../../components/Tap.jsx';
 
 let SelectOil = React.createClass({
-    getInitialState: function () {
-        var a1 = JSON.parse(localStorage.getItem('appointment-1'));
-        return {
-            showSmallUpkeep: true,
-            showBigUpkeep: false,
-            type: a1.type
-        };
+    onSelect: function(item) {
+        localStorage.setItem('choose-suit-select-oil', JSON.stringify(item));
+        HashLocation.pop();
+    },
+    getInitialState: function() {
+        getMaintenanceItems(1)
+            .then((items) => this.setState({items: items}));
+        return {};
     },
     render: function() {
+        var leftButton = {
+            className: 'ion-chevron-left',
+            onTap: () => {
+                HashLocation.pop();
+            }
+        };
         return (
             <div className="select-oil-page">
-                <Header>预约小保养</Header>
+                <Header leftButton={leftButton}>预约小保养</Header>
                 <div className="content">
                     <Title>选择机油</Title>
                     <div className="main">
-                        <section>
-                            <i>荐</i>
-                            <div>
-                                <img />
-                                <p>
-                                    <b>美孚 金装1号</b><br />
-                                    <span>0W-40 SN级</span>
-                                </p>
-                                <p>
-                                    <b>100元/升</b><br />
-                                    <span>原价120元/升</span>
-                                </p>
-                            </div>
-                            <i className="ion-ios-checkmark-outline"></i>
-                        </section>
+                        {renderItems.call(this)}
                     </div>
                 </div>
-                <Button className="big-button" onTap={this.goAppointment}>下一步</Button>
+                <Button className="big-button">确定</Button>
                 <Footer></Footer>
             </div>
         );
+
+        function renderItems() {
+            var items = this.state && this.state.items ? this.state.items : [];
+            return items.map((item) => {
+                return (
+                    <Tap onTap={() => this.onSelect(item)}>
+                        <section>
+                            <i style={{display:'none'}}>荐</i>
+                            <div>
+                                <img />
+                                <p>
+                                    <b>{item.display_name}</b><br />
+                                    <span>{item.item_desc}</span>
+                                </p>
+                                <p>
+                                    <b>{item.display_price}</b><br />
+                                    <span>原价{item.original_price}元/升</span>
+                                </p>
+                            </div>
+                            <i className="ion-ios-checkmark-outline" style={{display:'none'}}></i>
+                        </section>
+                    </Tap>
+                );
+            });
+        }
     }
 });
 

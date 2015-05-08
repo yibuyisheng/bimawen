@@ -1,6 +1,7 @@
 import fetch from 'whatwg-fetch';
-import { createFormData, encodeParams } from '../common.jsx';
+import { createFormData, encodeParams, post } from '../common.jsx';
 import { Promise } from 'es6-promise';
+import xhr from 'xhr';
 
 function getMyCars() {
     return window.fetch('/account/my/car/?token=' + localStorage.getItem('token'))
@@ -69,4 +70,29 @@ function addCar(carModelId, abbreviation, licensePlate, carInfo, isDefault) {
         });
 }
 
-export { getMyCars, getAllCarBrand, getSeries, getModels, getAddresses, addCar, getRegions };
+/**
+ * 获取维护条目列表
+ * @param type 类型，取值为：1->机油，2->机滤，3->空气滤，4->空调滤，5->人工费
+ * @returns Promise
+ */
+function getMaintenanceItems(type) {
+    return new Promise(function(resolve, reject) {
+        xhr({
+            method: 'GET',
+            url: 'http://121.40.167.199/account/query/item/type/' + type + '/'
+        }).on('load', function(response) {
+            if (response.status !== 200) {
+                return reject(new Error(response.response));
+            }
+            var data = JSON.parse(response.response);
+            if (data.status != 200) {
+                return reject(new Error(data.message));
+            }
+            resolve(data.item_list);
+        }).on('error', function(response) {
+            reject(new Error(response.response));
+        });
+    });
+}
+
+export { getMyCars, getAllCarBrand, getSeries, getModels, getAddresses, addCar, getRegions, getMaintenanceItems };

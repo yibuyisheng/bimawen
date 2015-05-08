@@ -19,6 +19,7 @@
     "gulp-postcss": "^4.0.3",
     "gulp-sourcemaps": "^1.5.1",
     "gulp-webserver": "^0.9.0",
+    "kill-process": "git://github.com/yibuyisheng/kill-process",
     "proxy": "git://github.com/yibuyisheng/proxy",
     "q": "^1.2.0",
     "react-tools": "^0.13.1",
@@ -35,6 +36,6 @@
     "reflux": "^0.2.7",
     "utilities": "git://github.com/yibuyisheng/utilities",
     "whatwg-fetch": "^0.7.0",
-    "xhr": "^2.0.1"
+    "xhr": "git://github.com/yibuyisheng/xhr"
   }
 }

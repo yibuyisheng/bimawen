@@ -21,7 +21,7 @@ var Appointment2 = React.createClass({
         }
 
         localStorage.setItem('appointment-2', JSON.stringify(selectedCar));
-        HashLocation.push('/appointment-3');
+        HashLocation.push('/choose-suit');
     },
     onModify: function() {},
     onSelectChange: function(car) {

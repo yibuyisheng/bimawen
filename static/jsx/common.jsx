@@ -1,5 +1,6 @@
 import Hammer from 'hammerjs';
 import { urlHelper } from 'utilities';
+import { Promise } from 'es6-promise';
 
 function createFormData(data) {
     var fd = new FormData();
@@ -18,4 +19,26 @@ function bindTap(element, callback) {
     hm.on('tap', callback);
 }
 
-export { createFormData, bindTap, encodeParams };
+function post(url, params) {
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            resolve({
+                status: xhr.status,
+                response: xhr.response
+            });
+        };
+        xhr.onerror = function() {
+            reject({
+                status: xhr.status,
+                response: xhr.response
+            });
+        };
+        xhr.send(encodeParams(params));
+    });
+}
+
+export { createFormData, bindTap, encodeParams, post };

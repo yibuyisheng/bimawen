@@ -10,6 +10,7 @@ import ReactRouter from 'react-router';
 import { getMyAddresses, getDefaultAddress } from '../../services/user.jsx';
 import Tap from '../../components/Tap.jsx';
 import { urlHelper } from 'utilities';
+import { addMaintanance } from '../../services/appointment.jsx';
 
 var Appointment3 = React.createClass({
     mixins: [ ReactRouter.State ],
@@ -33,11 +34,29 @@ var Appointment3 = React.createClass({
         if (!this.state.defaultAddress) {
             return AlertTransfer.error('请选择地址');
         }
-        localStorage.setItem('appointment-3', JSON.stringify({
-            time: this.state.params.suggestTime,
-            address: this.state.defaultAddress,
-            remarks: this.refs.remarks.getDOMNode().value
-        }));
+
+        var a1 = JSON.parse(localStorage.getItem('appointment-1'));
+        var a2 = JSON.parse(localStorage.getItem('appointment-2'));
+        var cs = JSON.parse(localStorage.getItem('choose-suit'));
+        addMaintanance(
+            a1.type,
+            '', // slipCode
+            this.state.defaultAddress.id,
+            a2.id,
+            a2.license_plate_aleph,
+            a2.license_plate,
+            '', // reservation_time
+            this.state.defaultAddress.contact,
+            this.state.defaultAddress.contact_phone,
+            '', // comments
+            cs.totalAmount // totalAmount
+        );
+
+        //localStorage.setItem('appointment-3', JSON.stringify({
+        //    time: this.state.params.suggestTime,
+        //    address: this.state.defaultAddress,
+        //    remarks: this.refs.remarks.getDOMNode().value
+        //}));
         HashLocation.push('/appointment-success');
     },
     getInitialState: function() {
@@ -58,9 +77,6 @@ var Appointment3 = React.createClass({
             },
             defaultAddress: selectedAddress
         };
-    },
-    componentDidMount: function() {
-
     },
     render: function () {
         var leftButton = {
