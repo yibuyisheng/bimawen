@@ -23,6 +23,7 @@
     "proxy": "git://github.com/yibuyisheng/proxy",
     "q": "^1.2.0",
     "react-tools": "^0.13.1",
+    "uglify-loader": "^1.2.0",
     "webpack": "^1.7.3"
   },
   "dependencies": {

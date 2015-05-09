@@ -39,25 +39,40 @@ var Appointment3 = React.createClass({
         var a2 = JSON.parse(localStorage.getItem('appointment-2'));
         var cs = JSON.parse(localStorage.getItem('choose-suit'));
         addMaintanance(
-            a1.type,
-            '', // slipCode
+            a1.type === 'big' ? 20 : 10,
+            '1', // slipCode
             this.state.defaultAddress.id,
             a2.id,
             a2.license_plate_aleph,
             a2.license_plate,
-            '', // reservation_time
+            new Date().getTime(), // reservation_time
             this.state.defaultAddress.contact,
             this.state.defaultAddress.contact_phone,
-            '', // comments
-            cs.totalAmount // totalAmount
-        );
-
-        //localStorage.setItem('appointment-3', JSON.stringify({
-        //    time: this.state.params.suggestTime,
-        //    address: this.state.defaultAddress,
-        //    remarks: this.refs.remarks.getDOMNode().value
-        //}));
-        HashLocation.push('/appointment-success');
+            this.refs.remarks.getDOMNode().value, // comments
+            cs.totalAmount || 0 // totalAmount
+        )
+            .then(() => {
+                // 预约成功，删除一系列垃圾数据，然后跳转到成功页面
+                //localStorage.removeItem('appointment-1');
+                //localStorage.removeItem('appointment-2');
+                //localStorage.removeItem('appointment3-suggest_time');
+                //localStorage.removeItem('choose-suit');
+                //
+                //localStorage.removeItem('add-car-brand');
+                //localStorage.removeItem('add-car-brand_name');
+                //localStorage.removeItem('add-car-model');
+                //localStorage.removeItem('add-car-model_name');
+                //localStorage.removeItem('add-car-series');
+                //localStorage.removeItem('add-car-series_name');
+                //
+                //localStorage.removeItem('choose-suit');
+                //localStorage.removeItem('choose-suit-select-air-condition-filter');
+                //localStorage.removeItem('choose-suit-select-air-filter');
+                //localStorage.removeItem('choose-suit-select-filter');
+                //localStorage.removeItem('choose-suit-select-oil');
+                //
+                HashLocation.push('/appointment-success?info=' + JSON.stringify());
+            });
     },
     getInitialState: function() {
         var time = localStorage.getItem('appointment3-suggest_time');

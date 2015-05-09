@@ -34,7 +34,8 @@ gulp.task('webserver', function() {
                 {source: '/account/my/address/default/', target: remoteHost + 'account/my/address/default/'},
                 {source: '/account/query/city/', target: remoteHost + 'account/query/city/'},
                 {source: '/account/my/address/', target: remoteHost + 'account/my/address/'},
-                {source: '/account/query/item/type/', target: remoteHost + 'account/query/item/type/'}
+                {source: '/account/query/item/type/', target: remoteHost + 'account/query/item/type/'},
+                {source: '/upkeep/reservation/add/', target: remoteHost + 'upkeep/reservation/add/'}
             ]
         }))
         .on('error', handleError);
@@ -52,7 +53,8 @@ gulp.task('js-pack', function(done) {
         },
         module: {
             loaders: [
-                { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader" }
+                { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader" },
+                { test: /\.js$/, loader: 'uglify' }
             ]
         },
         bail: true

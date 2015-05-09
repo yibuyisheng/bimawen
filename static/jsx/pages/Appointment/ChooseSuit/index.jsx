@@ -33,6 +33,11 @@ let ChooseSuit = React.createClass({
         HashLocation.push('/appointment-3');
     },
     _totalPrice: function() {
+        var oil = this.state && this.state.oil ? this.state.oil : {};
+        var filter = this.state && this.state.filter ? this.state.filter : {};
+        var airFilter = this.state && this.state.airFilter ? this.state.airFilter : {};
+        var airConditionFilter = this.state && this.state.airConditionFilter ? this.state.airConditionFilter : {};
+
         if (this.state.type === 'small') {
             return small();
         }
