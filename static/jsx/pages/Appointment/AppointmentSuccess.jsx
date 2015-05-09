@@ -5,18 +5,14 @@ import Title from '../../components/Title.jsx';
 import Button from '../../components/Button.jsx';
 import { HashLocation } from 'react-router';
 import { dateHelper } from 'utilities';
+import ReactRouter from 'react-router';
 
 var AppointmentSuccess = React.createClass({
+    mixins: [ ReactRouter.State ],
     getInitialState: function() {
-        var car = JSON.parse(localStorage.getItem('appointment-2'));
-
-        var a3 = JSON.parse(localStorage.getItem('appointment-3'));
-        return {
-            car: car,
-            time: new Date(a3.time),
-            address: a3.address,
-            remarks: a3.remarks
-        };
+        var params = JSON.parse(this.getQuery().info);
+        params.time = new Date(parseInt(params.time));
+        return params;
     },
     render: function() {
         var leftButton = {

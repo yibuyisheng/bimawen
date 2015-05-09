@@ -31,9 +31,13 @@ var Appointment3 = React.createClass({
         HashLocation.push(urlHelper.buildUrl('edit-address', {address: JSON.stringify(this.state.defaultAddress)}));
     },
     onSubmitAppointment: function() {
-        if (!this.state.defaultAddress) {
-            return AlertTransfer.error('请选择地址');
-        }
+
+        //if (!this.state.defaultAddress) {
+        //    return AlertTransfer.error('请选择地址');
+        //}
+
+        var time = new Date();
+        var remarks = this.refs.remarks.getDOMNode().value;
 
         var a1 = JSON.parse(localStorage.getItem('appointment-1'));
         var a2 = JSON.parse(localStorage.getItem('appointment-2'));
@@ -45,34 +49,41 @@ var Appointment3 = React.createClass({
             a2.id,
             a2.license_plate_aleph,
             a2.license_plate,
-            new Date().getTime(), // reservation_time
+            time.getTime(), // reservation_time
             this.state.defaultAddress.contact,
             this.state.defaultAddress.contact_phone,
-            this.refs.remarks.getDOMNode().value, // comments
+            remarks, // comments
             cs.totalAmount || 0 // totalAmount
         )
             .then(() => {
                 // 预约成功，删除一系列垃圾数据，然后跳转到成功页面
-                //localStorage.removeItem('appointment-1');
-                //localStorage.removeItem('appointment-2');
-                //localStorage.removeItem('appointment3-suggest_time');
-                //localStorage.removeItem('choose-suit');
-                //
-                //localStorage.removeItem('add-car-brand');
-                //localStorage.removeItem('add-car-brand_name');
-                //localStorage.removeItem('add-car-model');
-                //localStorage.removeItem('add-car-model_name');
-                //localStorage.removeItem('add-car-series');
-                //localStorage.removeItem('add-car-series_name');
-                //
-                //localStorage.removeItem('choose-suit');
-                //localStorage.removeItem('choose-suit-select-air-condition-filter');
-                //localStorage.removeItem('choose-suit-select-air-filter');
-                //localStorage.removeItem('choose-suit-select-filter');
-                //localStorage.removeItem('choose-suit-select-oil');
-                //
+                localStorage.removeItem('appointment-1');
+                localStorage.removeItem('appointment-2');
+                localStorage.removeItem('appointment3-suggest_time');
+                localStorage.removeItem('choose-suit');
+
+                localStorage.removeItem('add-car-brand');
+                localStorage.removeItem('add-car-brand_name');
+                localStorage.removeItem('add-car-model');
+                localStorage.removeItem('add-car-model_name');
+                localStorage.removeItem('add-car-series');
+                localStorage.removeItem('add-car-series_name');
+
+                localStorage.removeItem('choose-suit');
+                localStorage.removeItem('choose-suit-select-air-condition-filter');
+                localStorage.removeItem('choose-suit-select-air-filter');
+                localStorage.removeItem('choose-suit-select-filter');
+                localStorage.removeItem('choose-suit-select-oil');
+
                 HashLocation.push('/appointment-success?info=' + JSON.stringify());
             });
+
+        HashLocation.push('/appointment-success?info=' + JSON.stringify({
+                car: JSON.parse(localStorage.getItem('appointment-2')),
+                time: time.getTime(),
+                address: this.state.defaultAddress,
+                remarks: remarks
+            }));
     },
     getInitialState: function() {
         var time = localStorage.getItem('appointment3-suggest_time');
@@ -85,6 +96,8 @@ var Appointment3 = React.createClass({
             getDefaultAddress()
                 .then((defaultAddress) => this.setState({defaultAddress: defaultAddress}));
         }
+
+        this.a1 = JSON.parse(localStorage.getItem('appointment-1'));
 
         return {
             params: {
@@ -103,7 +116,7 @@ var Appointment3 = React.createClass({
         var defaultAddress = this.state && this.state.defaultAddress ? this.state.defaultAddress : null;
         return (
             <div className="appointment-3">
-                <Header leftButton={leftButton}>预约</Header>
+                <Header leftButton={leftButton}>预约{this.a1.type === 'small' ? '小' : '大'}保养</Header>
                 <div className="content">
                     <Title>时间和地点</Title>
                     <p>

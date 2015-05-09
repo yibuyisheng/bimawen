@@ -85,7 +85,7 @@ let ChooseSuit = React.createClass({
         var airConditionFilter = this.state && this.state.airConditionFilter ? this.state.airConditionFilter : {};
         return (
             <div className="choose-suit-page">
-                <Header leftButton={leftButton}>预约小保养</Header>
+                <Header leftButton={leftButton}>预约{this.state.type === 'small' ? '小' : '大'}保养</Header>
                 <div className="content">
                     <Title>选择套餐</Title>
                     <div className="main">

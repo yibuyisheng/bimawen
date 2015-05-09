@@ -43,6 +43,8 @@ var Appointment2 = React.createClass({
             }, (error) => {
                 AlertTransfer.show(error.message ? error.message : '未知错误', '错误');
             });
+
+        this.a1 = JSON.parse(localStorage.getItem('appointment-1'));
         return {};
     },
     _renderCar: function(cars) {
@@ -82,7 +84,7 @@ var Appointment2 = React.createClass({
         };
         return (
             <div className="appointment-2">
-                <Header leftButton={leftButton}>预约小保养</Header>
+                <Header leftButton={leftButton}>预约{this.a1.type === 'small' ? '小' : '大'}保养</Header>
                 <div className="content">
                     <Title>车辆信息</Title>
                     <div className="main">
