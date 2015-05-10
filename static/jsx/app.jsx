@@ -135,7 +135,7 @@ var routes = (
             </Route>
             <DefaultRoute handler={UserCenterIndex} />
         </Route>
-        <DefaultRoute handler={Appointment1} />
+        <DefaultRoute handler={Flow} />
     </Route>
 );
 
