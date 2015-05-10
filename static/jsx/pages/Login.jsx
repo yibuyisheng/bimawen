@@ -7,6 +7,7 @@ import { HashLocation } from 'react-router';
 import userStore from '../store/User.jsx';
 import Reflux from 'reflux';
 import { base } from 'utilities';
+import AlertTransfer from '../transfers/AlertTransfer.jsx';
 
 var Login = React.createClass({
     onTouchEnd: function () {
@@ -18,7 +19,7 @@ var Login = React.createClass({
     },
     onLoginEnd: function (result) {
         if (base.isString(result)) {
-            alert(result);
+            AlertTransfer.error(result);
         } else {
             console.log('token', result.token);
         }

@@ -41,4 +41,10 @@ function addMaintanance(
     });
 }
 
-export { addMaintanance };
+function getAppointmentCount() {
+    return new Promise(function(resolve, reject) {
+        resolve(1);
+    });
+}
+
+export { addMaintanance, getAppointmentCount };

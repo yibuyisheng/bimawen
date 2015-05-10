@@ -10,6 +10,7 @@ import ReactRouter from 'react-router';
 import { urlHelper } from 'utilities';
 import Tap from '../../../components/Tap.jsx';
 import { getAddresses, addCar } from '../../../services/car.jsx';
+import AlertTransfer from '../../../transfers/AlertTransfer.jsx';
 
 var Index = React.createClass({
     mixins: [ ReactRouter.State ],
@@ -33,9 +34,9 @@ var Index = React.createClass({
             query.brand_name + ' ' + query.series_name + ' ' + query.model_name,
             this.state.isDefault
         ).then(() => {
-            alert('成功')
+            AlertTransfer.show('操作成功', '成功');
             this._clearSelected();
-        }, (error) => alert(error.message));
+        }, (error) => AlertTransfer.error(error.message));
     },
     getInitialState: function() {
         var selectButtons = [

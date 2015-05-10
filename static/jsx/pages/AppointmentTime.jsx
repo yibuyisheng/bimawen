@@ -7,6 +7,7 @@ import Select from '../components/Select.jsx';
 import { HashLocation } from 'react-router';
 import ReactRouter from 'react-router';
 import { dateHelper } from 'utilities';
+import AlertTransfer from '../transfers/AlertTransfer.jsx';
 
 var AppointmentTime = React.createClass({
     mixins: [ ReactRouter.State ],
@@ -20,10 +21,10 @@ var AppointmentTime = React.createClass({
         dateTime.setMinutes(minutes);
 
         if (dateTime.getTime() - 24 * 60 * 60 * 1000 < new Date().getTime()) {
-            return alert('服务时间离现在至少24小时');
+            return AlertTransfer.error('服务时间离现在至少24小时');
         }
         if (dateTime.getHours() < 8 || dateTime.getHours() > 21) {
-            return alert('服务时间不在工作时间范围内');
+            return AlertTransfer.error('服务时间不在工作时间范围内');
         }
 
         localStorage.setItem('appointment3-suggest_time', dateTime.getTime());

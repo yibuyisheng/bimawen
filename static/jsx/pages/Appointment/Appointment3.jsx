@@ -32,9 +32,9 @@ var Appointment3 = React.createClass({
     },
     onSubmitAppointment: function() {
 
-        //if (!this.state.defaultAddress) {
-        //    return AlertTransfer.error('请选择地址');
-        //}
+        if (!this.state.defaultAddress) {
+            return AlertTransfer.error('请选择地址');
+        }
 
         var time = new Date();
         var remarks = this.refs.remarks.getDOMNode().value;
